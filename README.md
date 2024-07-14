@@ -2,7 +2,7 @@
 
 ![](Resources/Splash/splash.svg)
 
-YouTube Downloader MAUI is a cross-platform application built with .NET MAUI that allows users to download audio from YouTube videos and playlists. It is focused to work on Android.
+YT Downloader is a cross-platform application built with .NET MAUI that allows users to download audio from YouTube videos and playlists. It is focused to work on Android.
 
 ## Features
 
