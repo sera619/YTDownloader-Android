@@ -18,12 +18,15 @@ YouTube Downloader MAUI is a cross-platform application built with .NET MAUI tha
 ### Installation
 
 1. **Enable Unknown Sources:**
-   - Before installing the APK, you need to allow installations from unknown sources. To do this, go to your Android device's settings:
+  
+  **Notice** This is necessary because the app is hosted here and not via the Google Play Store. Google therefore does not sign the app itself and it is marked as unsafe and not installed. Click [here](https://www.airdroid.com/app-management/install-unknown-apps-android/) for more information.):
+   
+   - Before installing the APK, you need to allow installations from unknown sources. To do this, go to your Android device's settings
      - Open **Settings**
      - Go to **Security** or **Privacy** (depending on your device)
      - Enable **Unknown Sources** or **Install unknown apps** and allow the browser or file manager you're using to install APKs.
 
-2. **Download and Install the APK:**
+1. **Download and Install the APK:**
    - Download the APK file from the release section of this repository or from the provided link.
    - Once downloaded, open the APK file to begin the installation process.
    - Follow the on-screen instructions to install the app.
