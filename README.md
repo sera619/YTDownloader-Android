@@ -15,11 +15,6 @@ YouTube Downloader MAUI is a cross-platform application built with .NET MAUI tha
 
 ## Getting Started
 
-### Prerequisites
-
-- .NET 7.0 or later
-- Visual Studio 2022 or later with MAUI workload installed
-
 ### Installation
 
 1. **Enable Unknown Sources:**
@@ -40,13 +35,16 @@ YouTube Downloader MAUI is a cross-platform application built with .NET MAUI tha
 3. Click 'Add' to add the video(s) to the download queue
 4. Click 'Download All' to start downloading the audio files
 
-## Dependencies
-
-- [YoutubeExplode](https://github.com/Tyrrrz/YoutubeExplode): Library for interacting with YouTube
 
 ## Contributing
+### Prerequisites
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+- .NET 7.0 or later
+- Visual Studio 2022 or later with MAUI workload installed
+
+### Dependencies
+- [YoutubeExplode](https://github.com/Tyrrrz/YoutubeExplode): Library for interacting with YouTube
 
 ## License
 
@@ -63,7 +61,7 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## Release Notes
 
-### Version 1.0.0 (Initial Release)
+### Version 2.8.1 (Initial Release)
 - Basic functionality for downloading audio from YouTube videos and playlists
 - Android and Windows support
 
