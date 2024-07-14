@@ -1,0 +1,364 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Provider;
+using Microsoft.Maui.Animations;
+
+using YoutubeExplode;
+using YoutubeExplode.Videos.Streams;
+using YTDownloaderMAUI.Models;
+using YTDownloaderMAUI.Src;
+
+namespace YTDownloaderMAUI.ViewModels
+{
+    public class DownloadSingleViewModel : BindableObject
+    {
+        public ObservableCollection<VideoEntry> VideoEntries { get; set; }
+        public ICommand DeleteCommand { get; }
+        public ICommand AddDummyCommand { get; }
+        public ICommand DownloadAllEntriesCommand { get; }
+        public ICommand ClearSingleCommand { get; }
+        public ICommand AddFileCommand { get; }
+
+        private static readonly string[] _dummyURLS = {
+            "https://www.youtube.com/watch?v=QWA-fWBQh0A",
+            // Weitere Dummy-URLs
+        };
+
+        private bool _showButtons= true;
+        public bool ShowButtons
+        {
+            get => _showButtons;
+            set
+            {
+                _showButtons= value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isBusy = false;
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isPlaylistDownload = false;
+        public bool IsPlaylistDownload
+        {
+            get => _isPlaylistDownload;
+            set
+            {
+                _isPlaylistDownload = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(VideoModeText));
+                OnPropertyChanged(nameof(UrlPlaceholderText));
+            }
+        }
+
+        public string VideoModeText => IsPlaylistDownload ? "Playlist" : "Single video";
+        public string UrlPlaceholderText => IsPlaylistDownload ? "Enter a youtube playlist url..." : "Enter a youtube video url...";
+
+        private string _singleUrlEntryText = string.Empty;
+        public string SingleUrlEntryText
+        {
+            get => _singleUrlEntryText;
+            set
+            {
+                _singleUrlEntryText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _defaultStatusText = "Insert a URL to add video to the download que.";
+
+        private string _statusMessage = string.Empty;
+        public string StatusMessage
+        {
+            get => _statusMessage;
+            set
+            {
+                _statusMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DownloadSingleViewModel()
+        {
+            VideoEntries = new ObservableCollection<VideoEntry>();
+            DeleteCommand = new Command<VideoEntry>(DeleteEntry);
+            AddDummyCommand = new Command(async () => await AddDummys());
+            DownloadAllEntriesCommand = new Command(async () => await DownloadAllEntriesAsync());
+            AddFileCommand = new Command<string>(async (url) => await AddVideoAsync(url));
+            ClearSingleCommand = new Command(async () => await ClearSingle());
+            StatusMessage = _defaultStatusText;
+        }
+
+        private void DeleteEntry(VideoEntry entry)
+        {
+            if (entry != null && VideoEntries.Contains(entry))
+            {
+                VideoEntries.Remove(entry);
+                if (VideoEntries.Count == 0) { 
+                    StatusMessage = _defaultStatusText;
+                }
+            }
+        }
+
+        private async Task AddDummys()
+        {
+            StatusMessage = "Adding dummys to list...";
+            int maxCount = _dummyURLS.Length;
+            for (int i = 0; i < maxCount; i++)
+            {
+                IsBusy = true;
+                ShowButtons = false;
+                StatusMessage = $"Adding dummy {i + 1}/{maxCount}...";
+                await AddSingleVideoAsync(_dummyURLS[i]);
+            }
+            ShowButtons = true;
+        }
+
+        public async Task DownloadAllEntriesAsync()
+        {
+            if (VideoEntries.Count == 0)
+            {
+                var noEntryAlert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("No Entries", "There are no entries to download.", "OK");
+                if (noEntryAlert != null)
+                {
+                    await noEntryAlert;
+                }
+                return;
+            }
+
+            int maxCount = VideoEntries.Count;
+            int currentCount = 0;
+
+            IsBusy = true;
+            StatusMessage = "Downloading all entries...";
+
+            foreach (var entry in VideoEntries.ToList())
+            {
+                currentCount += 1;
+                StatusMessage = $"Downloading file {currentCount}/{maxCount}...";
+                ShowButtons = false;
+                await Task.Run(async () =>
+                {
+                    YoutubeClient client = new YoutubeClient();
+                    var video = await client.Videos.GetAsync(entry.URL);
+                    string videoTitle = video.Title;
+                    var streamInfoSet = await client.Videos.Streams.GetManifestAsync(entry.URL);
+                    var streamInfo = streamInfoSet.GetAudioStreams().GetWithHighestBitrate();
+                    if (streamInfo != null)
+                    {
+                        string fileName = $"{CleanFileName(videoTitle)}.mp3";
+                        if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                        {
+                            
+                            await SaveFileScopedStorage(streamInfo, fileName);
+                        }
+                        else
+                        {
+                            string downloadsPath = Utils.GetDownloadsPath();
+                            string fullPath = Path.Combine(downloadsPath, fileName);
+                            await client.Videos.Streams.DownloadAsync(streamInfo, fullPath);
+                        }
+                    }
+                });
+
+                VideoEntries.Remove(entry);
+            }
+            var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Download finished", "All files are successfully downloaded.", "OK");
+            if (alert != null)
+            {
+                await alert;
+            }
+            IsBusy = false;
+            ShowButtons = true;
+            StatusMessage = string.Empty;
+        }
+
+        private static string CleanFileName(string fileName)
+        {
+            return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
+        }
+
+        private async Task AddVideoAsync(string videoUrl)
+        {
+            if (string.IsNullOrEmpty(videoUrl))
+                return;
+
+            IsBusy = true;
+            ShowButtons = false;
+            if (!IsPlaylistDownload)
+            {
+                await AddSingleVideoAsync(videoUrl);
+            }
+            else
+            {
+                await AddPlaylistVideosAsync(videoUrl);
+            }
+        }
+
+        private async Task AddPlaylistVideosAsync(string videoUrl)
+        {
+            StatusMessage = "Adding files to list...";
+            if (!Utils.IsYouTubePlaylistUrl(videoUrl))
+            {
+                IsBusy = false;
+                StatusMessage = string.Empty;
+                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Playlist Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube playlist URL.", "OK");
+                if (alert != null)
+                {
+                    await alert;
+                }
+                ShowButtons = true;
+                return;
+            }
+
+            YoutubeClient client = new YoutubeClient();
+            await foreach (var video in client.Playlists.GetVideosAsync(videoUrl))
+            {
+                if (video == null)
+                {
+                    var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Playlist Error", $"No videos found in url:\n\n'{videoUrl}'\n\nPlease check url and try again!", "OK");
+                    if (alert != null)
+                    {
+                        await alert;
+                    }
+                    continue;
+                }
+                else
+                {
+                    VideoEntry newEntry = new VideoEntry
+                    {
+                        URL = video.Url,
+                        Title = Utils.TruncateText(video.Title),
+                        Duration = video.Duration?.ToString() ?? "Unknown"
+                    };
+                    Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() => VideoEntries.Add(newEntry));
+                }
+            }
+            SingleUrlEntryText = string.Empty;
+            IsBusy = false;
+            ShowButtons = true;
+
+            StatusMessage = string.Empty;
+        }
+
+        private async Task AddSingleVideoAsync(string videoUrl)
+        {
+            StatusMessage = "Adding file to list...";
+            if (!Utils.IsYouTubeUrl(videoUrl))
+            {
+                IsBusy = false;
+                StatusMessage = string.Empty;
+                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube video URL.", "OK");
+                if (alert != null)
+                {
+                    await alert;
+                }
+                ShowButtons = true;
+
+                return;
+            }
+
+            YoutubeClient client = new YoutubeClient();
+            var video = await client.Videos.GetAsync(videoUrl);
+            if (video == null)
+            {
+                IsBusy = false;
+                StatusMessage = string.Empty;
+                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Error", $"No video found in your url:\n\n{videoUrl}\n\nPlease check url and try again!", "OK");
+                if (alert != null)
+                {
+                    await alert;
+                }
+                ShowButtons = true;
+
+                return;
+            }
+            SingleUrlEntryText = string.Empty;
+
+            VideoEntry videoEntry = new VideoEntry
+            {
+                URL = video.Url,
+                Title = Utils.TruncateText(video.Title),
+                Duration = video.Duration?.ToString() ?? "Unknown"
+            };
+
+            VideoEntries.Add(videoEntry);
+            IsBusy = false;
+            ShowButtons = true;
+
+            StatusMessage = string.Empty;
+        }
+
+        private async Task SaveFileScopedStorage(IStreamInfo streamInfo, string fileName)
+        {
+            try
+            {
+                var contentResolver = Android.App.Application.Context.ContentResolver;
+                var values = new ContentValues();
+                values.Put(MediaStore.IMediaColumns.DisplayName, fileName);
+                values.Put(MediaStore.IMediaColumns.MimeType, "audio/mpeg");
+                values.Put(MediaStore.IMediaColumns.RelativePath, Android.OS.Environment.DirectoryMusic);
+
+                var uri = contentResolver.Insert(MediaStore.Audio.Media.ExternalContentUri, values);
+                if (uri != null)
+                {
+                    using (var outputStream = contentResolver.OpenOutputStream(uri))
+                    {
+                        if (outputStream != null)
+                        {
+                            var youtubeClient = new YoutubeClient();
+                            await youtubeClient.Videos.Streams.CopyToAsync(streamInfo, outputStream);
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Download Error", $"Something went wrong with your download.\n\nPlease contact the developer!\n\n{ex.Message}", "OK");
+                if (alert != null)
+                {
+                    await alert;
+                }
+                return;
+            }
+        }
+
+        private async Task ClearSingle()
+        {
+            if (VideoEntries.Count == 0)
+            {
+                return;
+            }
+            if (Microsoft.Maui.Controls.Application.Current?.MainPage != null)
+            {
+                bool isOkay = await Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert("Clear video list.", $"Are you sure that you want delete all {VideoEntries.Count}x videos from list?", "Yes", "No");
+                if (isOkay)
+                {
+                    Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() => VideoEntries.Clear());
+                    StatusMessage = _defaultStatusText;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+    }
+}

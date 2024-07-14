@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="YTDownloaderMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:YTDownloaderMAUI.Pages"
+    xmlns:local="clr-namespace:YTDownloaderMAUI"
+    Title="YT Downloader Android"
+    Style="{StaticResource BlackTabbarStyle}">
+    <Shell.ToolbarItems>
+        
+        <ToolbarItem IconImageSource="power_icon.svg"  Order="Primary" Priority="0" x:Name="AppMenuExitButton" Clicked="AppMenuExitButton_Clicked"/>
+    </Shell.ToolbarItems>
+    <TabBar>            
+        <ShellContent Title="Home" Icon="home_icon.svg" ContentTemplate="{DataTemplate pages:HomePage}" />
+        <ShellContent Title="Download" Icon="download_icon.svg" ContentTemplate="{DataTemplate pages:DownloadPage}" />
+        <ShellContent Title="About" Icon="info_icon.svg" ContentTemplate="{DataTemplate pages:AboutPage}" />
+    </TabBar>
+</Shell>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YTDownloaderMAUI.Pages.DownloadPage"
+             xmlns:views="clr-namespace:YTDownloaderMAUI.Views"
+             xmlns:viewModels="clr-namespace:YTDownloaderMAUI.ViewModels"
+             BackgroundColor="#121212">
+    <ContentPage.BindingContext>
+        <viewModels:DownloadSingleViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout  Padding="20,5,20,5" Spacing="5">
+            <views:PageHeaderView HeaderText="Download youtube video as audio."/>
+
+            <Border Margin="0,10,0,0" Padding="10,5,10,5" Stroke="Red" BackgroundColor="#222" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Entry  PlaceholderColor="White" Grid.Row="1" Text="{Binding SingleUrlEntryText}" ClearButtonVisibility="WhileEditing" Grid.Column="0" x:Name="SingleURLEntry" Placeholder="{Binding UrlPlaceholderText}" HorizontalOptions="FillAndExpand"/>
+                    <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" Spacing="5">
+                        <ImageButton IsEnabled="{Binding ShowButtons}" Style="{StaticResource DarkRedRectamgleImageButton}" Source="add_icon.svg" Aspect="AspectFit" Padding="8" WidthRequest="40" CornerRadius="5" HeightRequest="35" Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference SingleURLEntry}}" />
+                        <ImageButton IsEnabled="{Binding ShowButtons}" BackgroundColor="#8B0000" Source="paste_icon.svg" Aspect="AspectFit" Padding="8" WidthRequest="40" CornerRadius="5" HeightRequest="35" x:Name="PasteClipboardButton" Clicked="PasteClipboardButton_Clicked" />
+                    </HorizontalStackLayout>
+                    <Grid Padding="5,0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Margin="8,0,0,0" Text="{Binding VideoModeText}"  HorizontalOptions="Start" FontAutoScalingEnabled="True" FontSize="16" VerticalOptions="Center" />
+                        <Switch IsEnabled="{Binding ShowButtons}" IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+                    <BoxView Grid.Row="1" HeightRequest="1" Margin="0,5,0,15" BackgroundColor="#6B0000" HorizontalOptions="FillAndExpand" />
+                    </Grid>
+
+                    <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
+                        <ImageButton IsEnabled="{Binding ShowButtons }" Source="download_icon.svg" WidthRequest="70" HeightRequest="35" Aspect="AspectFit" Command="{Binding DownloadAllEntriesCommand}" Style="{StaticResource DarkRedImageButton}" />
+                        <ImageButton IsEnabled="{Binding ShowButtons }" Source="reset_icon.svg" WidthRequest="70" HeightRequest="35" Aspect="AspectFit" Command="{Binding ClearSingleCommand}" Style="{StaticResource DarkRedImageButton}" />
+                        <ImageButton IsVisible="False" Source="save_icon.svg" WidthRequest="70" HeightRequest="35" Aspect="AspectFit" Command="{Binding AddDummyCommand}" Style="{StaticResource DarkRedImageButton}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+            <Border Margin="0,10,0,10" Padding="10,5,10,5" Stroke="Red" BackgroundColor="#222" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding StatusMessage}" FontAttributes="Bold" FontFamily="OpenSansSemibold" FontSize="16" TextColor="WhiteSmoke" 
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" HeightRequest="60" Color="Red"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <ListView  ItemsSource="{Binding VideoEntries}"                     
+                      SeparatorColor="Red"
+                      VerticalOptions="CenterAndExpand"
+                          
+                      RowHeight="60" SelectionMode="None" HorizontalScrollBarVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid Padding="10" BackgroundColor="#333">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding Title}" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Text="{Binding Duration}" FontAttributes="Italic"/>
+                                <ImageButton IsEnabled="{Binding Path=BindingContext.ShowButtons}" Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type ListView}}}"
+                                             CommandParameter="{Binding .}"
+                                             Grid.RowSpan="2" Source="delete_icon.svg" Grid.Column="1" Aspect="AspectFit" HeightRequest="40" Padding="11" WidthRequest="40" Style="{StaticResource DarkRedImageButton }" CornerRadius="20" VerticalOptions="Center" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:YTDownloaderMAUI.Views"
+             x:Class="YTDownloaderMAUI.Pages.AboutPage"
+             xmlns:viewModels="clr-namespace:YTDownloaderMAUI.ViewModels"
+             BackgroundColor="#121212">
+    <ContentPage.BindingContext>
+        <viewModels:AboutViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Padding="20,5,20,10" Spacing="5">
+            <views:PageHeaderView HeaderText="All information about YT Downloader." />
+
+            <Border Margin="0,10,0,0" Padding="20" Stroke="#CC0000" BackgroundColor="#222" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="YT Downloader Description" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="YTDownloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists. Our software offers a seamless solution for music enthusiasts, podcast listeners, and content creators who wish to access their favorite audio offline."
+                           Style="{StaticResource BodyLabelStyle}" />
+                    <Label Text="Whether you're creating a personal music library, preparing offline content for your commute, or gathering audio resources for your next project, YTDownloader provides an efficient, legal way to transform online content into portable audio files."
+                           Style="{StaticResource BodyLabelStyle}" />
+
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <Label Text="Key Features" Style="{StaticResource SubHeaderLabelStyle}" />
+                    <VerticalStackLayout Margin="80,0,0,0" Spacing="5">
+                        <Label Text="• Convert individual YouTube videos to high-quality audio files" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Download entire YouTube playlists, preserving the original order" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Simple, intuitive interface for effortless operation" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Fast processing and download speeds" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+                    
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Windows Desktop Version" Style="{StaticResource SubHeaderLabelStyle}" />
+                        <Label Text="A Windows Desktop version of YTDownloader is also available for Windows 10/11 x64. It can be downloaded from GitHub:"
+                           Style="{StaticResource BodyLabelStyle}" />
+                        <Button Text="Windows Desktop Version" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YoutubeDownloader_WinUI3"  HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="windows_icon.svg" Style="{StaticResource DarkRedButton}" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Support and Contact" Style="{StaticResource SubHeaderLabelStyle}" />
+                        <Label Text="We appreciate your interest in our YT Downloader app and want to make sure you have the best experience possible. If you have any questions, suggestions or problems using our app, please do not hesitate to contact us. " Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="Detailed contact information as well as links to our social media channels can be found below. We look forward to hearing from you and helping you with any concerns you may have about the YT Downloader app."
+                           Style="{StaticResource BodyLabelStyle}" />
+                        <Button Text="YT Downloader on Github" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YoutubeDownloader_WinUI3" HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Style="{StaticResource DarkRedButton}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Margin="0,10,0,0">
+                        <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,0.5*">
+                            <Label Text="Developed by:" Style="{StaticResource BodyLabelStyle}" />
+                            <Label Grid.Column="1"  HorizontalOptions="End" Text="S3R43o3" Style="{StaticResource BodyLabelStyle}" />
+                            <Label Grid.Row="1" Text="Email:" Style="{StaticResource BodyLabelStyle}" />
+                            <Label Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" Text="seragame619@gmail.com" Style="{StaticResource BodyLabelStyle}" />
+                        </Grid>
+                        <Label Margin="0,15,0,5" Text="Or you can reach out the social media with the following buttons." LineBreakMode="WordWrap" HorizontalTextAlignment="Start" Style="{StaticResource BodyLabelStyle}"/>
+                        <FlexLayout Margin="0,10,0,5" AlignContent="Center" JustifyContent="SpaceAround">
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.github.com/sera619" Style="{StaticResource OutlinedDarkRedButton}" />
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="youtube_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.youtube.com/p/S3R43o3" Style="{StaticResource OutlinedDarkRedButton}" />
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="codepen_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://codepen.io/sera619" Style="{StaticResource OutlinedDarkRedButton}" />
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <Label Text="Legal Disclaimer" Style="{StaticResource SubHeaderLabelStyle}" />
+                    <Label Text="Please note: Always respect copyright laws and terms of service when using YTDownloader. This tool is intended for personal use with content you have the right to download and convert."
+                           Style="{StaticResource LegalLabelStyle}" />
+
+                </VerticalStackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
