@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YTDownloaderMAUI.Pages.HelpPage"
+            xmlns:views="clr-namespace:YTDownloaderMAUI.Views"
+             Title="Help">
+    <ScrollView>
+        <VerticalStackLayout  Padding="20,5,20,5" Spacing="5">
+            <views:PageHeaderView HeaderText="Here you will find some help if you have problems."/>
+
+            <Border Margin="0,10,0,0" Padding="10,5,10,5" Stroke="Red" BackgroundColor="#222" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="How get a valid youtube url?" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="YT Downloader has strict url input guidelines to ensure the security of the app. Currently, the url format that is copied to the clipboard via the 'Share' button is not supported. "
+                            Style="{StaticResource BodyLabelStyle}" />
+                    <Label Text="To get a valid url that this app accepts you have to follow these steps in the youtube Android app:"
+                            Style="{StaticResource BodyLabelStyle}" />
+                    <VerticalStackLayout Margin="80,0,0,0" Spacing="5">
+                        <Label Text="• Open a video you want to download." Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Click on the 'Share' button" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Scroll to the bottom of 'more apps...' and select 'more'" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• there you will find a url that you can simply copy to the clipboard using the 'copy' button" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+                    <Label Text="Now you can use the 'insert' button in the app to insert the url into the input field. Then press the 'add' button to add the video to the download queue."
+                            Style="{StaticResource BodyLabelStyle}" />
+                    <Label Text="Below you will find screenshots that describe the process once again."
+                            Style="{StaticResource BodyLabelStyle}" />
+                    
+                    <VerticalStackLayout>
+                        <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 1:" />
+                        <Image Source="help_img_1.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+
+                        <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 2:" />
+                        <Image Source="help_img_2.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <Label Text="If you need further help, have suggestions or other problems please go to the about page and under 'contact' you will find ways to get in touch with us."
+                        Style="{StaticResource BodyLabelStyle}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

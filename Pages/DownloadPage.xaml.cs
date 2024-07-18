@@ -19,5 +19,10 @@ namespace YTDownloaderMAUI.Pages
             }
             SingleURLEntry.Text = clipboardText;
         }
+
+        private async void HelpButton_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//HelpPage");
+        }
     }
 }
