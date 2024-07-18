@@ -50,6 +50,7 @@ namespace YTDownloaderMAUI.Src
             string[] patterns = new string[]
             {
                 @"^https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+(&[a-zA-Z0-9_-]+=[a-zA-Z0-9_%]+)*$", // Mobile YouTube Video
+                @"^https:\/\/youtube\.com\/watch\?v=[a-zA-Z0-9_-]+(&[a-zA-Z0-9_-]+=[a-zA-Z0-9_%]+)*$",
                 @"^https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+(&[a-zA-Z0-9_-]+=[a-zA-Z0-9_%]+)*$", // Desktop YouTube Video
                 @"^https:\/\/youtu\.be\/[a-zA-Z0-9_-]+$", // Shortened YouTube Video
                 @"^https:\/\/www\.youtube\.com\/embed\/[a-zA-Z0-9_-]+$", // Embedded YouTube Video
