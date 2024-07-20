@@ -176,14 +176,14 @@ namespace YTDownloaderMAUI.ViewModels
                     }
                 });
 
-                VideoEntries.Remove(entry);
             }
+            VideoEntries.Clear();
+            IsBusy = false;
             var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Download finished", "All files are successfully downloaded.", "OK");
             if (alert != null)
             {
                 await alert;
             }
-            IsBusy = false;
             ShowButtons = true;
             StatusMessage = string.Empty;
         }
@@ -272,6 +272,11 @@ namespace YTDownloaderMAUI.ViewModels
 
                 return;
             }
+            if (videoUrl.Contains("youtu.be"))
+            {
+                videoUrl = Utils.ConvertShortUrlToLongUrl(videoUrl);
+            }
+
 
             YoutubeClient client = new YoutubeClient();
             var video = await client.Videos.GetAsync(videoUrl);

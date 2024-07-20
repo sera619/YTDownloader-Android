@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Maui.Storage;
 
 namespace YTDownloaderMAUI.Src
 {
@@ -13,7 +11,7 @@ namespace YTDownloaderMAUI.Src
         {
             if (text.Length > maxLength)
             {
-                return text.Substring(0, maxLength) + "..."; 
+                return text.Substring(0, maxLength) + "...";
             }
             return text;
         }
@@ -44,7 +42,6 @@ namespace YTDownloaderMAUI.Src
             return false;
         }
 
-
         public static bool IsYouTubeUrl(string url)
         {
             string[] patterns = new string[]
@@ -56,8 +53,9 @@ namespace YTDownloaderMAUI.Src
                 @"^https:\/\/www\.youtube\.com\/embed\/[a-zA-Z0-9_-]+$", // Embedded YouTube Video
                 @"^https:\/\/www\.youtube\.com\/v\/[a-zA-Z0-9_-]+$", // Old-style Embedded YouTube Video
                 @"^https:\/\/www\.youtube\.com\/user\/[a-zA-Z0-9_-]+#p\/u\/[0-9]+\/[a-zA-Z0-9_-]+$", // User Upload
-                @"^https:\/\/m\.youtube\.com\/user\/[a-zA-Z0-9_-]+#p\/u\/[0-9]+\/[a-zA-Z0-9_-]+$" // Mobile User Upload
-            };
+                @"^https:\/\/m\.youtube\.com\/user\/[a-zA-Z0-9_-]+#p\/u\/[0-9]+\/[a-zA-Z0-9_-]+$",// Mobile User Upload
+                @"(?:youtu\.be/|youtube\.com/(?:watch\?v=|embed/|v/|.*[?&]v=))([a-zA-Z0-9_-]{11})"
+        };
             foreach (var pattern in patterns)
             {
                 if (Regex.IsMatch(url, pattern))
@@ -67,18 +65,34 @@ namespace YTDownloaderMAUI.Src
             }
             return false;
         }
+
+        public static string ConvertShortUrlToLongUrl(string url)
+        {
+            string videoId = ExtractVideoId(url);
+            return videoId != null ? $"https://www.youtube.com/watch?v={videoId}" : null;
+        }
+
+        private static string ExtractVideoId(string url)
+        {
+            string pattern = @"(?:youtu\.be/|youtube\.com/(?:watch\?v=|embed/|v/|.*[?&]v=))([a-zA-Z0-9_-]{11})";
+            Match match = Regex.Match(url, pattern);
+            return match.Success ? match.Groups[1].Value : null;
+        }
+
         public static async Task<string> ReadFromClipboard()
         {
             if (Clipboard.HasText)
             {
                 string? clipboardText = await Clipboard.GetTextAsync();
-                if (string.IsNullOrEmpty(clipboardText)) {
+                if (string.IsNullOrEmpty(clipboardText))
+                {
                     return string.Empty;
                 }
                 return clipboardText;
             }
             return string.Empty;
         }
+
         public static string GetDownloadsPath()
         {
             string downloadsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyMusic);
@@ -92,6 +106,5 @@ namespace YTDownloaderMAUI.Src
 #endif
             return downloadsPath;
         }
-
     }
 }
