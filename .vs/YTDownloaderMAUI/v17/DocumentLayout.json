@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|c:\\1coding\\c#\\maui\\ytdownloadermaui\\platforms\\android\\androidmanifest.xml||{4E01A4BC-CFCF-452C-8C08-51352512D197}",
-      "RelativeMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|solutionrelative:platforms\\android\\androidmanifest.xml||{4E01A4BC-CFCF-452C-8C08-51352512D197}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|c:\\1coding\\c#\\maui\\ytdownloadermaui\\viewmodels\\downloadsingleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|solutionrelative:viewmodels\\downloadsingleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|c:\\1coding\\c#\\maui\\ytdownloadermaui\\src\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A4CF22D-A89D-44C8-A6C3-8466088DA95E}|YTDownloaderMAUI.csproj|solutionrelative:src\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 252,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,42 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e3fb24c2-2e84-3146-a5f8-bc25bbc68f8a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AndroidManifest.xml",
-              "DocumentMoniker": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\Platforms\\Android\\AndroidManifest.xml",
-              "RelativeDocumentMoniker": "Platforms\\Android\\AndroidManifest.xml",
-              "ToolTip": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\Platforms\\Android\\AndroidManifest.xml",
-              "RelativeToolTip": "Platforms\\Android\\AndroidManifest.xml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2024-07-20T14:44:32.567Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DownloadSingleViewModel.cs",
-              "DocumentMoniker": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\ViewModels\\DownloadSingleViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\DownloadSingleViewModel.cs",
-              "ToolTip": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\ViewModels\\DownloadSingleViewModel.cs",
-              "RelativeToolTip": "ViewModels\\DownloadSingleViewModel.cs",
-              "ViewState": "AQIAAA8BAAAAAAAAAAAjwCkBAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T14:28:02.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Utils.cs",
-              "DocumentMoniker": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\Src\\Utils.cs",
-              "RelativeDocumentMoniker": "Src\\Utils.cs",
-              "ToolTip": "C:\\1Coding\\C#\\MAUI\\YTDownloaderMAUI\\Src\\Utils.cs",
-              "RelativeToolTip": "Src\\Utils.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAmwDgAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T14:25:35.301Z"
             }
           ]
         }

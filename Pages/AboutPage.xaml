@@ -28,10 +28,15 @@
 
                     <Label Text="Key Features" Style="{StaticResource SubHeaderLabelStyle}" />
                     <VerticalStackLayout Margin="80,0,0,0" Spacing="5">
+                        <Label Text="• No ads" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• No unnescessary features" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• No big data" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• No security risks" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• Convert individual YouTube videos to high-quality audio files" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• Download entire YouTube playlists, preserving the original order" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• Simple, intuitive interface for effortless operation" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• Fast processing and download speeds" Style="{StaticResource BodyLabelStyle}" />
+
                     </VerticalStackLayout>
 
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />

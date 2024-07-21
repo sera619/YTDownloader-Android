@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YTDownloaderMAUI.Pages.HelpPage"
             xmlns:views="clr-namespace:YTDownloaderMAUI.Views"
+             BackgroundColor="#121212"
              Title="Help">
     <ScrollView>
         <VerticalStackLayout  Padding="20,5,20,5" Spacing="5">
@@ -15,26 +16,32 @@
 
                 <VerticalStackLayout Spacing="10">
                     <Label Text="How get a valid youtube url?" Style="{StaticResource CardHeaderLabelStyle}" />
-                    <Label Text="YT Downloader has strict url input guidelines to ensure the security of the app. Currently, the url format that is copied to the clipboard via the 'Share' button is not supported. "
+                    <Label Text="YT Downloader has strict url input guidelines to ensure the security of the app. With the latest update (2.9.8), the YT Downloader now also supports the use of so-called 'shortend' urls. These are urls that have been shortened and only contain important parameters. "
                             Style="{StaticResource BodyLabelStyle}" />
-                    <Label Text="To get a valid url that this app accepts you have to follow these steps in the youtube Android app:"
+                    <Label Text="In the android Youtube app you can simply select the option 'copy link/url' via the 'share' button and use it conveniently in the app."
                             Style="{StaticResource BodyLabelStyle}" />
+                    <Label Text="The YT Downloader software takes care of converting and checking the URL in the background to make it available for download."
+        Style="{StaticResource BodyLabelStyle}" />
+                    <Label Text="To add future videos to the download waiting list you need to follow these steps:"
+        Style="{StaticResource BodyLabelStyle}" />
+
                     <VerticalStackLayout Margin="80,0,0,0" Spacing="5">
-                        <Label Text="• Open a video you want to download." Style="{StaticResource BodyLabelStyle}" />
-                        <Label Text="• Click on the 'Share' button" Style="{StaticResource BodyLabelStyle}" />
-                        <Label Text="• Scroll to the bottom of 'more apps...' and select 'more'" Style="{StaticResource BodyLabelStyle}" />
-                        <Label Text="• there you will find a url that you can simply copy to the clipboard using the 'copy' button" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• Open a video you want to download in the youtube app" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• click on the 'share' button" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• use the 'copy url/link' button in the following menu" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• switch to the YT Downloader app" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• in the download menu you can use the paste button to paste the url into the input field" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• then click the add button and the video will be added to the download waiting list (you can have multiple videos in the waiting list)" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="• you are ready to go, press the download button to start the process" Style="{StaticResource BodyLabelStyle}" />
                     </VerticalStackLayout>
-                    <Label Text="Now you can use the 'insert' button in the app to insert the url into the input field. Then press the 'add' button to add the video to the download queue."
+                    <Label IsVisible="False" Text="Below you will find screenshots that describe the process once again."
                             Style="{StaticResource BodyLabelStyle}" />
-                    <Label Text="Below you will find screenshots that describe the process once again."
-                            Style="{StaticResource BodyLabelStyle}" />
-                    
-                    <VerticalStackLayout>
+
+                    <VerticalStackLayout IsVisible="False">
                         <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 1:" />
                         <Image Source="help_img_1.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout IsVisible="False" >
 
                         <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 2:" />
                         <Image Source="help_img_2.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
