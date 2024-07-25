@@ -64,6 +64,24 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## Release Notes
 
+
+### Version 3.0.1 (Release Version)
+- implement versionchecking and updatehandler
+
+### Version 2.9.9 (Release Version)
+- Improved menu navigation
+- update of the help page for the use of shortened urls
+- various GUI color and display fixes
+
+### Version 2.9.8 (Release Version)
+- enable usage of shortend youtube video url´s
+
+### Version 2.9.1 (Release Version)
+- Adding a help page to help getting a valid youtube url
+
+### Version 2.8.2 (Hotfix)
+- fix url bug where urls without 'www.' in front off are flagged as invalid 
+
 ### Version 2.8.1 (Initial Release)
 - Basic functionality for downloading audio from YouTube videos and playlists
 - Android and Windows support
