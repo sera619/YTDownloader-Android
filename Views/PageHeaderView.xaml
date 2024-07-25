@@ -11,7 +11,7 @@
                 
                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="YT Downloader" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End" />
-                    <Label Text="Version 2.9.9" HorizontalTextAlignment="Center" FontSize="14" VerticalOptions="End" TextColor="Gray" />
+                    <Label Text="Version 3.0.1" HorizontalTextAlignment="Center" FontSize="14" VerticalOptions="End" TextColor="Gray" />
                 </VerticalStackLayout>
             
             </HorizontalStackLayout>

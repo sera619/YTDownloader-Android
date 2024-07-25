@@ -15,6 +15,7 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
         _notificationService = new LocalNotificationService();
+        CheckVersions();
 
 #if ANDROID
             //RequestStoragePermission();
@@ -24,9 +25,36 @@ public partial class HomePage : ContentPage
 
 #if ANDROID
 
+
+    private async void CheckVersions()
+    {
+        bool isUpdateAvailable = await VersionService.CheckVersionAsync();
+        if (isUpdateAvailable)
+        {
+            ShowUpdatePopup();
+            await ShowNotification();
+        }
+    }
+
     private async Task ShowNotification()
     {
-        await _notificationService.ShowNotificationAsync("Test Notification", "This is a test notification from yt downloader.", DateTime.Now.AddSeconds(1));
+        await _notificationService.ShowNotificationAsync("YT Downloader Update", "A new version of YT Downloader Android ist available.", DateTime.Now.AddSeconds(1));
+    }
+
+
+    private async void ShowUpdatePopup()
+    {
+        var popup = new YTPopup("New Update!", "A new update is availble.\nDo you want to download it?", "Yes", "No");
+        var result = await this.ShowPopupAsync(popup);
+        if (result is bool boolResult)
+        {
+            if (boolResult)
+            {
+                Uri uri = new Uri("https://github.com/sera619/YTDownloader-Android/releases");
+                await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            }
+        }
+
     }
 
     private async void NotifyButton_Clicked(object sender, EventArgs e)

@@ -13,7 +13,8 @@
             <Label Text="Android"  Style="{StaticResource CardHeaderLabelStyle}" Margin="0" Padding="0" HorizontalTextAlignment="Center"  SemanticProperties.HeadingLevel="Level2" />
 
             <Label FontSize="Body" Margin="10, 10, 10, 10" Padding="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="YT Downloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists. Our software offers a seamless solution for music enthusiasts, podcast listeners, and content creators who wish to access their favorite audio offline."  SemanticProperties.HeadingLevel="Level2" SemanticProperties.Description="Welcome to YT Downloader." />
-       
+
+            <Label IsVisible="Hidden" x:Name="TestLabel" Text="" Style="{StaticResource BodyLabelStyle}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
