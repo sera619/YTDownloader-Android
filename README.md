@@ -68,6 +68,9 @@ This application is for personal use only. Please respect YouTube's terms of ser
 ### Version 3.0.1 (Release Version)
 - implement versionchecking and updatehandler
 
+<details>
+<summary>Older releases</summary>
+
 ### Version 2.9.9 (Release Version)
 - Improved menu navigation
 - update of the help page for the use of shortened urls
@@ -85,6 +88,8 @@ This application is for personal use only. Please respect YouTube's terms of ser
 ### Version 2.8.1 (Initial Release)
 - Basic functionality for downloading audio from YouTube videos and playlists
 - Android and Windows support
+</details>
+
 
 ## Roadmap
 
