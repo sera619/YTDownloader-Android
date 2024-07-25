@@ -7,11 +7,11 @@
         <VerticalStackLayout Spacing="10">
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" >
                 
-                <Image Source="logo_transparent.png" WidthRequest="70" Aspect="AspectFit" />
+                <Image Source="transparent_logo.svg" WidthRequest="70" Aspect="AspectFit" />
                 
                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="YT Downloader" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End" />
-                    <Label Text="Version 3.0.1" HorizontalTextAlignment="Center" FontSize="14" VerticalOptions="End" TextColor="Gray" />
+                    <Label Text="Version 3.1.0" HorizontalTextAlignment="Center" FontSize="14" VerticalOptions="End" TextColor="Gray" />
                 </VerticalStackLayout>
             
             </HorizontalStackLayout>

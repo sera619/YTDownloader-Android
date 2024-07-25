@@ -8,7 +8,7 @@
     <Frame Padding="20" Margin="10" BackgroundColor="#222" BorderColor="#9B0000"  CornerRadius="10" HasShadow="False" MaximumWidthRequest="500">
         <VerticalStackLayout Spacing="15" HorizontalOptions="FillAndExpand">
             <HorizontalStackLayout Spacing="10">
-                <Image Source="logo_transparent.png" Aspect="AspectFit" HeightRequest="40"/>
+                <Image Source="transparent_logo.svg" Aspect="AspectFit" HeightRequest="40"/>
                 <Label Text="{Binding Title}" FontAttributes="Bold"  TextColor="#9B0000" FontSize="Title" VerticalOptions="Center" HorizontalOptions="Start"/>
             </HorizontalStackLayout>
 
@@ -17,7 +17,8 @@
                 FontSize="Body"
                 Text="{Binding Message}"
                 VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Margin="10,0,10,0"/>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
                 <Button Text="{Binding OKButtonText}" Clicked="OnOKButtonClicked" Style="{StaticResource GreenButton}" />

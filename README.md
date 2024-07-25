@@ -64,12 +64,15 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## Release Notes
 
-
-### Version 3.0.1 (Release Version)
-- implement versionchecking and updatehandler
+### Version 3.1.0 (Release Version)
+- enable cancel download feature
+- fixing app logo display error on Popup/Header
 
 <details>
 <summary>Older releases</summary>
+
+### Version 3.0.1 (Release Version)
+- implement versionchecking and updatehandler
 
 ### Version 2.9.9 (Release Version)
 - Improved menu navigation
