@@ -7,7 +7,7 @@
              >
     <ScrollView HorizontalScrollBarVisibility="Default">
         <VerticalStackLayout  Padding="20,20" Spacing="5" VerticalOptions="Center">
-            <Image Source="logo_transparent.png" HeightRequest="250" Aspect="AspectFit" SemanticProperties.Description="YouTube Downloader logo" />
+            <Image Source="transparent_icon.svg" HeightRequest="300" Aspect="AspectFit" SemanticProperties.Description="YouTube Downloader logo" />
             <Label Text="YT Downloader" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" Margin="0" />
 
             <Label Text="Android"  Style="{StaticResource CardHeaderLabelStyle}" Margin="0" Padding="0" HorizontalTextAlignment="Center"  SemanticProperties.HeadingLevel="Level2" />
