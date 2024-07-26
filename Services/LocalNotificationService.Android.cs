@@ -102,7 +102,7 @@ namespace YTDownloaderMAUI.Services
                 var builder = new NotificationCompat.Builder(context, "LocalNotifications")
                     .SetContentTitle(title)
                     .SetContentText(message)
-                    .SetSmallIcon(Resource.Drawable.logo_transparent)
+                    .SetSmallIcon(Resource.Drawable.transparent_icon)
                     .SetAutoCancel(true);
 
                 var notificationManager = NotificationManagerCompat.From(context);
