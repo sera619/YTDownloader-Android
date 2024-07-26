@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.creativedudesstudios.ytdownloader" android:versionCode="3" android:versionName="3.1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.creativedudesstudios.ytdownloader" android:versionCode="3" android:versionName="3.0.1">
 	<application android:requestLegacyExternalStorage="false" android:allowBackup="true" android:icon="@mipmap/appiconnew" android:supportsRtl="true" android:label="YT Downloader"></application>
 	<queries>
 		<intent>
