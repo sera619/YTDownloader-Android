@@ -7,21 +7,16 @@
                >
     <Frame Padding="20" Margin="10" BackgroundColor="#222" BorderColor="#9B0000"  CornerRadius="10" HasShadow="False" MaximumWidthRequest="500">
         <VerticalStackLayout Spacing="15" HorizontalOptions="FillAndExpand">
-            <HorizontalStackLayout Spacing="10">
-                <Image Source="logo_transparent.png" Aspect="AspectFit" HeightRequest="40"/>
+            <HorizontalStackLayout Spacing="5">
+                <Image Source="transparent_icon.svg" Aspect="AspectFit" HeightRequest="60"/>
                 <Label Text="{Binding Title}" FontAttributes="Bold"  TextColor="#9B0000" FontSize="Title" VerticalOptions="Center" HorizontalOptions="Start"/>
             </HorizontalStackLayout>
 
-
-            <Label 
-                FontSize="Body"
-                Text="{Binding Message}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+            <Label FontSize="Body" Text="{Binding Message}" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,20"/>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
-                <Button Text="{Binding OKButtonText}" Clicked="OnOKButtonClicked" Style="{StaticResource GreenButton}" />
-                <Button Text="{Binding CancelButtonText}" Clicked="OnNoButtonClicked" Style="{StaticResource OutlinedDarkRedButton}" />
+                <Button WidthRequest="110" Text="{Binding OKButtonText}" Clicked="OnOKButtonClicked" Style="{StaticResource GreenButton}" />
+                <Button WidthRequest="110" Text="{Binding CancelButtonText}" Clicked="OnNoButtonClicked" Style="{StaticResource OutlinedDarkRedButton}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </Frame>
