@@ -64,12 +64,23 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## Release Notes
 
+### Version 3.1.1 (Release Version)
+- implementing settings
+- setup settings option "Check for updates on start"
+- add dynamic version and helptext generation
+- setup settings option "Check for updates", to manually check for updates
+- add Menu Tab "Settings"
+- implementing dynamic save from user settings
+- fix app icon display errors on popup/header
+- fix download statusmessage display
+- update YT Popup layout
+
+<details>
+<summary>Older releases</summary>
 
 ### Version 3.0.1 (Release Version)
 - implement versionchecking and updatehandler
 
-<details>
-<summary>Older releases</summary>
 
 ### Version 2.9.9 (Release Version)
 - Improved menu navigation
