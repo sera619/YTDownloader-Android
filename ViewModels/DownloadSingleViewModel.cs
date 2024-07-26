@@ -28,6 +28,7 @@ namespace YTDownloaderMAUI.ViewModels
 
         private static readonly string[] _dummyURLS = {
             "https://www.youtube.com/watch?v=QWA-fWBQh0A",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             // Weitere Dummy-URLs
         };
 
@@ -175,9 +176,9 @@ namespace YTDownloaderMAUI.ViewModels
                         }
                     }
                 });
+                await MainThread.InvokeOnMainThreadAsync(() => VideoEntries.Remove(entry));
 
             }
-            VideoEntries.Clear();
             IsBusy = false;
             var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Download finished", "All files are successfully downloaded.", "OK");
             if (alert != null)
@@ -185,7 +186,7 @@ namespace YTDownloaderMAUI.ViewModels
                 await alert;
             }
             ShowButtons = true;
-            StatusMessage = string.Empty;
+            StatusMessage = _defaultStatusText;
         }
 
         private static string CleanFileName(string fileName)
@@ -216,7 +217,7 @@ namespace YTDownloaderMAUI.ViewModels
             if (!Utils.IsYouTubePlaylistUrl(videoUrl))
             {
                 IsBusy = false;
-                StatusMessage = string.Empty;
+                StatusMessage = _defaultStatusText;
                 var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Playlist Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube playlist URL.", "OK");
                 if (alert != null)
                 {
@@ -253,7 +254,7 @@ namespace YTDownloaderMAUI.ViewModels
             IsBusy = false;
             ShowButtons = true;
 
-            StatusMessage = string.Empty;
+            StatusMessage = _defaultStatusText;
         }
 
         private async Task AddSingleVideoAsync(string videoUrl)
@@ -262,7 +263,7 @@ namespace YTDownloaderMAUI.ViewModels
             if (!Utils.IsYouTubeUrl(videoUrl))
             {
                 IsBusy = false;
-                StatusMessage = string.Empty;
+                StatusMessage = _defaultStatusText;
                 var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube video URL.", "OK");
                 if (alert != null)
                 {
@@ -306,7 +307,7 @@ namespace YTDownloaderMAUI.ViewModels
             IsBusy = false;
             ShowButtons = true;
 
-            StatusMessage = string.Empty;
+            StatusMessage = _defaultStatusText;
         }
 
         private async Task SaveFileScopedStorage(IStreamInfo streamInfo, string fileName)
