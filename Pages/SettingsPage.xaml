@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YTDownloaderMAUI.Pages.SettingsPage"
+             xmlns:views="clr-namespace:YTDownloaderMAUI.Views"
+             xmlns:viewModels="clr-namespace:YTDownloaderMAUI.ViewModels"
+             Title="Settings"
+             BackgroundColor="#121212"
+             >
+
+    <ContentPage.BindingContext>
+        <viewModels:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView VerticalOptions="FillAndExpand">
+        <VerticalStackLayout Padding="20,5,20,10" Spacing="10" >
+            <views:PageHeaderView HeaderText="Customize YT Downloader." />
+
+            <Border Margin="0,10,0,0" Padding="20" Stroke="#CC0000" BackgroundColor="#222" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+
+                    <VerticalStackLayout>
+                        
+                    <Label Text="Common Settings" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <TableView  Intent="Settings">
+                        <TableRoot>
+                            <TableSection>
+                                <SwitchCell Text="Check for updates on start" On="{Binding IsCheckForUpdates}" />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout>
+                        <Label Text="Check for updates" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label HorizontalOptions="CenterAndExpand" Text="{Binding CheckUpdateText}" Style="{StaticResource BodyLabelStyle}" />
+                            <ActivityIndicator Color="Red" IsRunning="{Binding IsChecking}" />
+                            <Button ImageSource="download_icon.svg" WidthRequest="200" HeightRequest="35" Text="Download new version" IsVisible="{Binding IsDownloadButtonVisible}" Style="{StaticResource DarkRedButton}"  Command="{Binding OpenDownloadUrlCommand}"/>
+                            <Button ImageSource="check_update_icon.svg" HeightRequest="35" WidthRequest="200" Text="Check For Updates" Style="{StaticResource DarkRedButton}" Command="{Binding CheckForUpdatesCommand}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
