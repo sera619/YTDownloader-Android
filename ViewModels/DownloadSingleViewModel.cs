@@ -11,6 +11,7 @@ using Android.Provider;
 using Microsoft.Maui.Animations;
 
 using YoutubeExplode;
+using YoutubeExplode.Common;
 using YoutubeExplode.Videos.Streams;
 using YTDownloaderMAUI.Models;
 using YTDownloaderMAUI.Src;
@@ -115,6 +116,7 @@ namespace YTDownloaderMAUI.ViewModels
                 }
             }
         }
+
 
         private async Task AddDummys()
         {
@@ -295,7 +297,6 @@ namespace YTDownloaderMAUI.ViewModels
                 return;
             }
             SingleUrlEntryText = string.Empty;
-
             VideoEntry videoEntry = new VideoEntry
             {
                 URL = video.Url,
