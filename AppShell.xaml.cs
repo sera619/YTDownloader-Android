@@ -9,11 +9,19 @@ namespace YTDownloaderMAUI
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
+        }
+
+
+
+        private async void OnSettingsButtonClicked(object sender, EventArgs e) {
+
+            await Shell.Current.GoToAsync("//HomePage/SettingsPage");
         }
 
         private async void AppMenuExitButton_Clicked(object sender, EventArgs e)
         {
-            var popup = new YTPopup("Exit YT Downloader", "Do you really want to exit?", "Confirm", "Decline");
+            var popup = new YTPopup("Exit YT Downloader", "All your download entries will be deleted!\nDo you really want to exit?", "Confirm", "Decline");
             var result = await this.ShowPopupAsync(popup);
             if(result is bool boolResult)
             {
