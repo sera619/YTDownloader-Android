@@ -9,6 +9,15 @@ public partial class PageHeaderView : ContentView
         typeof(PageHeaderView),
         string.Empty);
 
+    private string _versionText = string.Empty;
+    public string VersionText
+    {
+        get => _versionText;
+        set
+        {
+            _versionText = value;
+        }
+    }
     public string HeaderText
     {
         get => (string)GetValue(HeaderTextProperty);
@@ -18,6 +27,7 @@ public partial class PageHeaderView : ContentView
     public PageHeaderView()
     {
         InitializeComponent();
+        VersionText = $"Version {VersionTracking.CurrentVersion}";
         this.BindingContext = this;
     }
 }
