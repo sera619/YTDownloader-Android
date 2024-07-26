@@ -6,12 +6,20 @@
     xmlns:pages="clr-namespace:YTDownloaderMAUI.Pages"
     xmlns:local="clr-namespace:YTDownloaderMAUI"
     Title="YT Downloader Android"
-    Style="{StaticResource BlackTabbarStyle}">
+    Style="{StaticResource BlackTabbarStyle}" MaximumHeightRequest="40">
+
+    
     <Shell.ToolbarItems>
-        
-        <ToolbarItem IconImageSource="power_icon.svg"  Order="Primary" Priority="0" x:Name="AppMenuExitButton" Clicked="AppMenuExitButton_Clicked"/>
+        <ToolbarItem IconImageSource="settings_icon.svg" Order="Primary" Priority="1" Clicked="OnSettingsButtonClicked"/>
+        <ToolbarItem  Order="Primary" Priority="2" Clicked="AppMenuExitButton_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FileImageSource File="power_icon.svg" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
     </Shell.ToolbarItems>
-    <TabBar>            
+
+    <TabBar>
         <ShellContent Title="Home" Route="HomePage" Icon="home_icon.svg" ContentTemplate="{DataTemplate pages:HomePage}" />
         <ShellContent Title="Download" Route="DownloadPage" Icon="download_icon.svg" ContentTemplate="{DataTemplate pages:DownloadPage}" />
         <ShellContent Title="About" Route="AboutPage" Icon="info_icon.svg" ContentTemplate="{DataTemplate pages:AboutPage}" />
