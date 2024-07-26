@@ -28,11 +28,15 @@ public partial class HomePage : ContentPage
 
     private async void CheckVersions()
     {
-        bool isUpdateAvailable = await VersionService.CheckVersionAsync();
-        if (isUpdateAvailable)
-        {
-            ShowUpdatePopup();
-            await ShowNotification();
+        if (SettingsService.GetCheckForUpdatesOnStart() == true) 
+        { 
+            
+            bool isUpdateAvailable = await VersionService.CheckVersionAsync();
+            if (isUpdateAvailable)
+            {
+                ShowUpdatePopup();
+                await ShowNotification();
+            }
         }
     }
 
