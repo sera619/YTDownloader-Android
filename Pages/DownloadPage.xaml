@@ -10,14 +10,16 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <VerticalStackLayout  Padding="20,5,20,5" Spacing="5">
+        <VerticalStackLayout MaximumWidthRequest="700" Padding="20,5,20,5" Spacing="5">
             <views:PageHeaderView HeaderText="Download youtube video as audio."/>
+
+
 
             <Border Margin="0,10,0,0" Padding="10,5,10,5" Stroke="Red" BackgroundColor="#222" StrokeThickness="1">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
-                <Grid>
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -28,33 +30,39 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Entry  PlaceholderColor="White" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding SingleUrlEntryText}" ClearButtonVisibility="WhileEditing" Grid.Column="0" x:Name="SingleURLEntry" Placeholder="{Binding UrlPlaceholderText}" HorizontalOptions="FillAndExpand"/>
-                    <HorizontalStackLayout Grid.Row="2"  HorizontalOptions="End" Spacing="5">
-                        <Button IsEnabled="{Binding ShowButtons}" Style="{StaticResource DarkRedButton}" Text="Add to list" ImageSource="add_icon.svg" Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference SingleURLEntry}}" />
-                        <Button IsEnabled="{Binding ShowButtons}" ImageSource="paste_icon.svg" Text="Paste" Style="{StaticResource DarkRedButton}"  Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" x:Name="PasteClipboardButton" Clicked="PasteClipboardButton_Clicked" />
-                    </HorizontalStackLayout>
-                    <Grid Padding="5,0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand">
+                    
+                    <Grid Padding="0,0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Label Margin="8,0,0,0" Text="{Binding VideoModeText}"  HorizontalOptions="Start" FontAutoScalingEnabled="True" FontSize="16" VerticalOptions="Center" />
-                        <Switch IsEnabled="{Binding ShowButtons}" IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-                        <BoxView Grid.Row="1" HeightRequest="1" Margin="0,5,0,15" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
-                    </Grid>
 
-                    <HorizontalStackLayout Grid.Row="4" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Margin="80,0,0,0" Text="{Binding VideoModeText}"  HorizontalOptions="Center" FontAutoScalingEnabled="True" FontSize="16" VerticalOptions="Center" />
+                        <Switch Grid.Row="0" Grid.Column="1" IsEnabled="{Binding ShowButtons}" IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Grid>
+                        
+                    <BoxView Grid.Row="1"  HeightRequest="1" Margin="0,0,0,15" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+                    
+                    <Entry  PlaceholderColor="White" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding SingleUrlEntryText}" ClearButtonVisibility="WhileEditing" Grid.Column="0" x:Name="SingleURLEntry" Placeholder="{Binding UrlPlaceholderText}" HorizontalOptions="FillAndExpand"/>
+                    <HorizontalStackLayout Grid.Row="3" Margin="0,10,0,10"  HorizontalOptions="End" Spacing="5">
+                        <Button IsEnabled="{Binding ShowButtons}" Style="{StaticResource DarkRedButton}" Text="Add to list" ImageSource="add_icon.svg" Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference SingleURLEntry}}" />
+                        <Button IsEnabled="{Binding ShowButtons}" ImageSource="paste_icon.svg" Text="Paste" Style="{StaticResource DarkRedButton}"  Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" x:Name="PasteClipboardButton" Clicked="PasteClipboardButton_Clicked" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="5" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
+                        <Button Text="Need Help?" IsEnabled="{Binding ShowButtons}" WidthRequest="140" TextColor="WhiteSmoke"  Style="{StaticResource OutlinedDarkRedButton}" HorizontalOptions="Start"  ImageSource="help_icon.svg" HeightRequest="35" x:Name="HelpButton" Clicked="HelpButton_Clicked" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="4" Grid.ColumnSpan="2" Spacing="15" Margin="0,5,0,5" HorizontalOptions="Center">
                         <Button IsEnabled="{Binding ShowButtons }" Text="Reset" ImageSource="reset_icon.svg" WidthRequest="140" HeightRequest="35" Command="{Binding ClearSingleCommand}" Style="{StaticResource DarkRedButton}" />
                         <Button Text="Download" IsEnabled="{Binding ShowButtons }" ImageSource="download_icon.svg" WidthRequest="140" HeightRequest="35"  Command="{Binding DownloadAllEntriesCommand}" Style="{StaticResource DarkRedButton}" />
-                        <ImageButton IsVisible="False" Source="save_icon.svg" WidthRequest="70" HeightRequest="35" Aspect="AspectFit" Command="{Binding AddDummyCommand}" Style="{StaticResource DarkRedImageButton}" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
-                        <Button Text="Need Help?" IsEnabled="{Binding ShowButtons}" WidthRequest="160" TextColor="WhiteSmoke"  Style="{StaticResource OutlinedDarkRedButton}" HorizontalOptions="Center"  ImageSource="help_icon.svg" HeightRequest="35" x:Name="HelpButton" Clicked="HelpButton_Clicked" />
+                        <ImageButton IsVisible="True" Source="save_icon.svg" WidthRequest="70" HeightRequest="35" Aspect="AspectFit" Command="{Binding AddDummyCommand}" Style="{StaticResource DarkRedImageButton}" />
                     </HorizontalStackLayout>
                 </Grid>
             </Border>
