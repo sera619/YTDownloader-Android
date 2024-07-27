@@ -6,7 +6,7 @@
              xmlns:viewModels="clr-namespace:YTDownloaderMAUI.ViewModels"
              BackgroundColor="#121212">
     <ContentPage.BindingContext>
-        <viewModels:DownloadSingleViewModel />
+        <viewModels:DownloadViewModel />
     </ContentPage.BindingContext>
 
     <ScrollView>

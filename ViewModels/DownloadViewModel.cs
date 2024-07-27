@@ -10,7 +10,7 @@ using YTDownloaderMAUI.Src;
 
 namespace YTDownloaderMAUI.ViewModels
 {
-    public class DownloadSingleViewModel : BindableObject
+    public class DownloadViewModel : BindableObject
     {
         public ObservableCollection<VideoEntry> VideoEntries { get; set; }
         public ICommand DeleteCommand { get; }
@@ -100,7 +100,7 @@ namespace YTDownloaderMAUI.ViewModels
             }
         }
 
-        public DownloadSingleViewModel()
+        public DownloadViewModel()
         {
             VideoEntries = new ObservableCollection<VideoEntry>();
             DeleteCommand = new Command<VideoEntry>(DeleteEntry);
