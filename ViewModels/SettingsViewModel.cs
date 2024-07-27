@@ -1,11 +1,5 @@
-﻿using Android.Provider;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using YTDownloaderMAUI.Services;
 
@@ -21,7 +15,7 @@ namespace YTDownloaderMAUI.ViewModels
         public bool IsHomepageAnimation
         {
             get => _isHomepageAnimation;
-            set 
+            set
             {
                 _isHomepageAnimation = value;
                 OnPropertyChanged();
@@ -101,7 +95,7 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 CheckUpdateText = $"An error occured while opening download url: {ex.Message}";
             }
-        } 
+        }
 
         private async Task CheckForUpdates()
         {

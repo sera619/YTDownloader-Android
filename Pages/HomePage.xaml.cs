@@ -1,8 +1,5 @@
-
-using Android.Widget;
 using CommunityToolkit.Maui.Views;
 using YTDownloaderMAUI.Services;
-using YTDownloaderMAUI.Src;
 using YTDownloaderMAUI.Views;
 
 namespace YTDownloaderMAUI.Pages;
@@ -12,15 +9,15 @@ public partial class HomePage : ContentPage
 
     private readonly LocalNotificationService _notificationService;
     public HomePage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _notificationService = new LocalNotificationService();
         CheckVersions();
-        
+
 
 #if ANDROID
-            //RequestStoragePermission();
-          
+        //RequestStoragePermission();
+
 #endif
     }
 
@@ -29,8 +26,8 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        if (SettingsService.GetCheckForHomepageAnimation()) 
-        { 
+        if (SettingsService.GetCheckForHomepageAnimation())
+        {
             StartIntroAnimation();
         }
     }
@@ -52,9 +49,9 @@ public partial class HomePage : ContentPage
 
     private async void CheckVersions()
     {
-        if (SettingsService.GetCheckForUpdatesOnStart() == true) 
-        { 
-            
+        if (SettingsService.GetCheckForUpdatesOnStart() == true)
+        {
+
             bool isUpdateAvailable = await VersionService.CheckVersionAsync();
             if (isUpdateAvailable)
             {

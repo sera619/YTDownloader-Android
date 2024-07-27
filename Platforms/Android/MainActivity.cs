@@ -16,7 +16,7 @@ namespace YTDownloaderMAUI
         {
             base.OnCreate(savedInstanceState);
             Platform.Init(this, savedInstanceState);
-           
+
             RequestStoragePermission();
         }
 

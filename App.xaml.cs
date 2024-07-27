@@ -1,6 +1,4 @@
-﻿using YTDownloaderMAUI.Src;
-
-namespace YTDownloaderMAUI
+﻿namespace YTDownloaderMAUI
 {
     public partial class App : Application
     {

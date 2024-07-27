@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YTDownloaderMAUI.Services
+﻿namespace YTDownloaderMAUI.Services
 {
     internal static class SettingsService
     {
@@ -19,20 +13,20 @@ namespace YTDownloaderMAUI.Services
             return Preferences.Get(CheckForUpdatesKey, DefaultCheckForUpdates);
         }
 
-        public static void SetCheckForUpdatesOnStart(bool value) 
+        public static void SetCheckForUpdatesOnStart(bool value)
         {
             Preferences.Set(CheckForUpdatesKey, value);
         }
 
 
-        public static bool GetCheckForHomepageAnimation() 
-        { 
+        public static bool GetCheckForHomepageAnimation()
+        {
             return Preferences.Get(CheckForHomepageAnimationKey, DefaultCheckForHompageAnimation);
         }
 
         public static void SetCheckForHomepageAnimation(bool value)
-        { 
-            Preferences.Set(CheckForHomepageAnimationKey , value);
+        {
+            Preferences.Set(CheckForHomepageAnimationKey, value);
         }
 
     }

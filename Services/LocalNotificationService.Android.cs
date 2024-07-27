@@ -2,11 +2,6 @@
 using Android.Content;
 using Android.OS;
 using AndroidX.Core.App;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YTDownloaderMAUI.Services
 {
@@ -30,7 +25,7 @@ namespace YTDownloaderMAUI.Services
                 .SetContentText(message)
                 .SetSmallIcon(Resource.Drawable.logo_transparent)
                 .SetPriority(NotificationCompat.PriorityMax)
-                .SetDefaults((int)NotificationDefaults.Sound | (int) NotificationDefaults.Vibrate)
+                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate)
                 .SetVisibility(NotificationCompat.VisibilityPublic)
                 .SetAutoCancel(true);
 
@@ -46,7 +41,7 @@ namespace YTDownloaderMAUI.Services
                 intent.PutExtra("Title", title);
                 intent.PutExtra("Message", message);
                 intent.PutExtra("NotificationId", _notificationId);
-                    intent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
+                intent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
 
                 var pendingIntent = PendingIntent.GetBroadcast(_context, _notificationId, intent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
 

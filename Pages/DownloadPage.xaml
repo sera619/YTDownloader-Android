@@ -49,7 +49,7 @@
                     
                     <Entry  PlaceholderColor="White" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding SingleUrlEntryText}" ClearButtonVisibility="WhileEditing" Grid.Column="0" x:Name="SingleURLEntry" Placeholder="{Binding UrlPlaceholderText}" HorizontalOptions="FillAndExpand"/>
                     <HorizontalStackLayout Grid.Row="3" Margin="0,10,0,10"  HorizontalOptions="End" Spacing="10">
-                        <Button IsEnabled="{Binding ShowButtons}" Style="{StaticResource DarkRedButton}" Text="Add to list" ImageSource="add_icon.svg" Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference SingleURLEntry}}" />
+                        <Button x:Name="AddVideoButton" Clicked="AddVideoButton_Clicked" IsEnabled="{Binding ShowButtons}" Style="{StaticResource DarkRedButton}" Text="Add to list" ImageSource="add_icon.svg" Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference SingleURLEntry}}" />
                         <Button IsEnabled="{Binding ShowButtons}" ImageSource="paste_icon.svg" Text="Paste" Style="{StaticResource DarkRedButton}"  Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" x:Name="PasteClipboardButton" Clicked="PasteClipboardButton_Clicked" />
                     </HorizontalStackLayout>
 

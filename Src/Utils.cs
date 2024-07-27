@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.Maui.Storage;
+﻿using System.Text.RegularExpressions;
 
 namespace YTDownloaderMAUI.Src
 {

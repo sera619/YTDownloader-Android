@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
+﻿using System.Net.Http.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace YTDownloaderMAUI.Services
 {
     internal static class VersionService
     {
         private const string GitHubApiUrl = "https://api.github.com/repos/sera619/YTDownloader-Android/releases/latest";
-        
+
         public static async Task<string> GetLastestVersionAsync()
         {
             using var httpClient = new HttpClient();
@@ -42,7 +37,7 @@ namespace YTDownloaderMAUI.Services
 
     internal class GithubRelease
     {
-        [JsonPropertyName("tag_name")]    
+        [JsonPropertyName("tag_name")]
         public required string TagName { get; set; }
     }
 }

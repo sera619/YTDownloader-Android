@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace YTDownloaderMAUI.Pages;
 
 public partial class HelpPage : ContentPage
@@ -18,15 +16,15 @@ public partial class HelpPage : ContentPage
     private bool _isUsageHelpCreated = false;
 
     public HelpPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
         // create helptext as page appears
-        if (!_isUsageHelpCreated) 
+        if (!_isUsageHelpCreated)
         {
             CreateUsageHelp();
             _isUsageHelpCreated = true;
@@ -34,15 +32,15 @@ public partial class HelpPage : ContentPage
     }
 
     private void CreateUsageHelp()
-	{
-        foreach (var instruction in useInstructions) 
+    {
+        foreach (var instruction in useInstructions)
         {
             Label newLabel = new Label
             {
                 Text = instruction,
                 Style = (Style)Application.Current.Resources["BodyLabelStyle"]
             };
-		    UsageHelpLayout.Children.Add(newLabel);
+            UsageHelpLayout.Children.Add(newLabel);
         }
     }
 

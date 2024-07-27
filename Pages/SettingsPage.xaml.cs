@@ -2,11 +2,11 @@ namespace YTDownloaderMAUI.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
-	{
-		InitializeComponent();
+    public SettingsPage()
+    {
+        InitializeComponent();
 
-	}
+    }
     protected override bool OnBackButtonPressed()
     {
         // Optionally, you can add custom logic here

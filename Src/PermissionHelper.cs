@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Versioning;
-using System.Threading.Tasks;
-
-#if ANDROID
+﻿#if ANDROID
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -24,18 +18,18 @@ namespace YTDownloaderMAUI.Src
             var permissions = new List<string>();
             int sdkInt = (int)Android.OS.Build.VERSION.SdkInt;
             // API 29 or higher
-            if (sdkInt >= (int)BuildVersionCodes.Q) 
+            if (sdkInt >= (int)BuildVersionCodes.Q)
             {
                 permissions.Add(Android.Manifest.Permission.AccessMediaLocation);
             }
-           
+
             // API 31 or higher
             if (sdkInt >= (int)BuildVersionCodes.S)
             {
                 permissions.Add(Android.Manifest.Permission.ManageMedia);
             }
             // API 33 or higher
-                    
+
             if (sdkInt >= (int)BuildVersionCodes.Tiramisu)
             {
                 permissions.Add(Android.Manifest.Permission.ReadMediaVideo);
@@ -43,7 +37,7 @@ namespace YTDownloaderMAUI.Src
                 permissions.Add(Android.Manifest.Permission.ReadMediaImages);
             }
             // older versions
-            else 
+            else
             {
                 permissions.Add(Android.Manifest.Permission.ReadExternalStorage);
                 permissions.Add(Android.Manifest.Permission.WriteExternalStorage);
@@ -62,7 +56,7 @@ namespace YTDownloaderMAUI.Src
 
             foreach (var permission in requiredPermissions)
             {
-                
+
                 if (ContextCompat.CheckSelfPermission(activity, permission) != Permission.Granted)
                 {
                     permissionsToRequest.Add(permission);
@@ -95,7 +89,7 @@ namespace YTDownloaderMAUI.Src
 
             public override void OnReceive(Context? context, Intent? intent)
             {
-                if(intent != null && context != null)
+                if (intent != null && context != null)
                 {
 
                     var permissions = intent.GetStringArrayExtra("permissions");

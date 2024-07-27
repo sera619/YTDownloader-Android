@@ -8,7 +8,7 @@ public partial class YTPopup : Popup, INotifyPropertyChanged
 {
     private string title = string.Empty;
     private string message = string.Empty;
-    private string okButtonText= string.Empty;
+    private string okButtonText = string.Empty;
     private string cancelButtonText = string.Empty;
 
     public string Title
@@ -29,7 +29,7 @@ public partial class YTPopup : Popup, INotifyPropertyChanged
         set => SetProperty(ref okButtonText, value);
     }
 
-    
+
     public string CancelButtonText
     {
         get => cancelButtonText;
