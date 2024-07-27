@@ -71,6 +71,7 @@
                 <Label Text="{Binding StatusMessage}" FontAttributes="Bold" FontFamily="OpenSansSemibold" FontSize="16" TextColor="WhiteSmoke" 
                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap" />
                 <ActivityIndicator IsRunning="{Binding IsBusy}" HeightRequest="60" Color="Red"/>
+                <Button IsVisible="{Binding CanCancel}" ImageSource="cancel_icon.svg" HeightRequest="35" WidthRequest="200" IsEnabled="{Binding CanCancel}" Text="Cancel Download" Command="{Binding CancelDownloadCommand}" Style="{StaticResource DarkRedButton}"  />
             </VerticalStackLayout>
 
 

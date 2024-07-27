@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Android.App;
@@ -9,7 +10,7 @@ using Android.Content;
 using Android.OS;
 using Android.Provider;
 using Microsoft.Maui.Animations;
-
+using Microsoft.Maui.Controls;
 using YoutubeExplode;
 using YoutubeExplode.Common;
 using YoutubeExplode.Videos.Streams;
@@ -26,20 +27,33 @@ namespace YTDownloaderMAUI.ViewModels
         public ICommand DownloadAllEntriesCommand { get; }
         public ICommand ClearSingleCommand { get; }
         public ICommand AddFileCommand { get; }
+        public ICommand CancelDownloadCommand { get; }
+
+        private CancellationTokenSource? _cancellationTokenSource;
+        private bool _canCancel = false;
+        public bool CanCancel
+        {
+            get => _canCancel;
+            set
+            {
+                _canCancel = value;
+                OnPropertyChanged();
+            }
+        }
 
         private static readonly string[] _dummyURLS = {
             "https://www.youtube.com/watch?v=QWA-fWBQh0A",
             "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            // Weitere Dummy-URLs
+            // Additional dummy URLs
         };
 
-        private bool _showButtons= true;
+        private bool _showButtons = true;
         public bool ShowButtons
         {
             get => _showButtons;
             set
             {
-                _showButtons= value;
+                _showButtons = value;
                 OnPropertyChanged();
             }
         }
@@ -82,7 +96,7 @@ namespace YTDownloaderMAUI.ViewModels
             }
         }
 
-        private string _defaultStatusText = "Insert a URL to add video to the download que.";
+        private string _defaultStatusText = "Insert a URL to add video to the download queue.";
 
         private string _statusMessage = string.Empty;
         public string StatusMessage
@@ -103,44 +117,25 @@ namespace YTDownloaderMAUI.ViewModels
             DownloadAllEntriesCommand = new Command(async () => await DownloadAllEntriesAsync());
             AddFileCommand = new Command<string>(async (url) => await AddVideoAsync(url));
             ClearSingleCommand = new Command(async () => await ClearSingle());
+            CancelDownloadCommand = new Command(CancelDownload, () => CanCancel);
+
             StatusMessage = _defaultStatusText;
         }
 
-        private void DeleteEntry(VideoEntry entry)
+        private void CancelDownload()
         {
-            if (entry != null && VideoEntries.Contains(entry))
-            {
-                VideoEntries.Remove(entry);
-                if (VideoEntries.Count == 0) { 
-                    StatusMessage = _defaultStatusText;
-                }
-            }
-        }
-
-
-        private async Task AddDummys()
-        {
-            StatusMessage = "Adding dummys to list...";
-            int maxCount = _dummyURLS.Length;
-            for (int i = 0; i < maxCount; i++)
-            {
-                IsBusy = true;
-                ShowButtons = false;
-                StatusMessage = $"Adding dummy {i + 1}/{maxCount}...";
-                await AddSingleVideoAsync(_dummyURLS[i]);
-            }
-            ShowButtons = true;
+            _cancellationTokenSource?.Cancel();
+            CanCancel = false;
         }
 
         public async Task DownloadAllEntriesAsync()
         {
             if (VideoEntries.Count == 0)
             {
-                var noEntryAlert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("No Entries", "There are no entries to download.", "OK");
-                if (noEntryAlert != null)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await noEntryAlert;
-                }
+                    await App.Current?.MainPage?.DisplayAlert("No Entries", "There are no entries to download.", "OK");
+                });
                 return;
             }
 
@@ -148,47 +143,91 @@ namespace YTDownloaderMAUI.ViewModels
             int currentCount = 0;
 
             IsBusy = true;
+            CanCancel = true;
             StatusMessage = "Downloading all entries...";
 
-            foreach (var entry in VideoEntries.ToList())
+            _cancellationTokenSource = new CancellationTokenSource();
+            try
             {
-                currentCount += 1;
-                StatusMessage = $"Downloading file {currentCount}/{maxCount}...";
-                ShowButtons = false;
-                await Task.Run(async () =>
+                foreach (var entry in VideoEntries.ToList())
                 {
-                    YoutubeClient client = new YoutubeClient();
-                    var video = await client.Videos.GetAsync(entry.URL);
-                    string videoTitle = video.Title;
-                    var streamInfoSet = await client.Videos.Streams.GetManifestAsync(entry.URL);
-                    var streamInfo = streamInfoSet.GetAudioStreams().GetWithHighestBitrate();
-                    if (streamInfo != null)
+                    if (_cancellationTokenSource.Token.IsCancellationRequested)
                     {
-                        string fileName = $"{CleanFileName(videoTitle)}.mp3";
-                        if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                        {
-                            
-                            await SaveFileScopedStorage(streamInfo, fileName);
-                        }
-                        else
-                        {
-                            string downloadsPath = Utils.GetDownloadsPath();
-                            string fullPath = Path.Combine(downloadsPath, fileName);
-                            await client.Videos.Streams.DownloadAsync(streamInfo, fullPath);
-                        }
+                        StatusMessage = "Download cancelled.";
+                        break;
                     }
-                });
-                await MainThread.InvokeOnMainThreadAsync(() => VideoEntries.Remove(entry));
 
+                    currentCount += 1;
+                    StatusMessage = $"Downloading file {currentCount}/{maxCount}...";
+                    ShowButtons = false;
+
+                    await Task.Run(async () =>
+                    {
+                        try
+                        {
+                            YoutubeClient client = new YoutubeClient();
+                            var video = await client.Videos.GetAsync(entry.URL);
+                            string videoTitle = video.Title;
+                            var streamInfoSet = await client.Videos.Streams.GetManifestAsync(entry.URL);
+                            var streamInfo = streamInfoSet.GetAudioStreams().GetWithHighestBitrate();
+                            if (streamInfo != null)
+                            {
+                                string fileName = $"{CleanFileName(videoTitle)}.mp3";
+                                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                                {
+                                    await SaveFileScopedStorage(streamInfo, fileName, _cancellationTokenSource.Token);
+                                }
+                                else
+                                {
+                                    string downloadsPath = Utils.GetDownloadsPath();
+                                    string fullPath = Path.Combine(downloadsPath, fileName);
+                                    await client.Videos.Streams.DownloadAsync(streamInfo, fullPath, null, _cancellationTokenSource.Token);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Inner exception: {ex}");
+                            throw;
+                        }
+                    }, _cancellationTokenSource.Token);
+
+                    await MainThread.InvokeOnMainThreadAsync(() => VideoEntries.Remove(entry));
+                }
+
+                if (!_cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
+                    {
+                        StatusMessage = _defaultStatusText;
+                        await App.Current?.MainPage?.DisplayAlert("Download finished", "All files are successfully downloaded.", "OK");
+                    });
+                }
             }
-            IsBusy = false;
-            var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Download finished", "All files are successfully downloaded.", "OK");
-            if (alert != null)
+            catch (System.OperationCanceledException)
             {
-                await alert;
+                StatusMessage = "Download cancelled.";
             }
-            ShowButtons = true;
-            StatusMessage = _defaultStatusText;
+            catch (Exception ex)
+            {
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    StatusMessage = $"Error during download: {ex.Message}";
+                });
+                System.Diagnostics.Debug.WriteLine($"Outer exception: {ex}");
+
+                if (ex.InnerException != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Inner exception: {ex.InnerException}");
+                }
+            }
+            finally
+            {
+                IsBusy = false;
+                CanCancel = false;
+                ShowButtons = true;
+                _cancellationTokenSource = null;
+            }
         }
 
         private static string CleanFileName(string fileName)
@@ -220,11 +259,10 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 IsBusy = false;
                 StatusMessage = _defaultStatusText;
-                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Playlist Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube playlist URL.", "OK");
-                if (alert != null)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await alert;
-                }
+                    await App.Current?.MainPage?.DisplayAlert("Playlist Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube playlist URL.", "OK");
+                });
                 ShowButtons = true;
                 return;
             }
@@ -234,11 +272,10 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 if (video == null)
                 {
-                    var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Playlist Error", $"No videos found in url:\n\n'{videoUrl}'\n\nPlease check url and try again!", "OK");
-                    if (alert != null)
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
-                        await alert;
-                    }
+                        await App.Current?.MainPage?.DisplayAlert("Playlist Error", $"No videos found in url:\n\n'{videoUrl}'\n\nPlease check url and try again!", "OK");
+                    });
                     continue;
                 }
                 else
@@ -249,7 +286,7 @@ namespace YTDownloaderMAUI.ViewModels
                         Title = Utils.TruncateText(video.Title),
                         Duration = video.Duration?.ToString() ?? "Unknown"
                     };
-                    Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() => VideoEntries.Add(newEntry));
+                    MainThread.BeginInvokeOnMainThread(() => VideoEntries.Add(newEntry));
                 }
             }
             SingleUrlEntryText = string.Empty;
@@ -266,13 +303,11 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 IsBusy = false;
                 StatusMessage = _defaultStatusText;
-                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube video URL.", "OK");
-                if (alert != null)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await alert;
-                }
+                    await App.Current?.MainPage?.DisplayAlert("Video Error", $"Your URL:\n\n'{videoUrl}'\n\nis not a valid YouTube video URL.", "OK");
+                });
                 ShowButtons = true;
-
                 return;
             }
             if (videoUrl.Contains("youtu.be"))
@@ -280,20 +315,17 @@ namespace YTDownloaderMAUI.ViewModels
                 videoUrl = Utils.ConvertShortUrlToLongUrl(videoUrl);
             }
 
-
             YoutubeClient client = new YoutubeClient();
             var video = await client.Videos.GetAsync(videoUrl);
             if (video == null)
             {
                 IsBusy = false;
                 StatusMessage = string.Empty;
-                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Error", $"No video found in your url:\n\n{videoUrl}\n\nPlease check url and try again!", "OK");
-                if (alert != null)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await alert;
-                }
+                    await App.Current?.MainPage?.DisplayAlert("Video Error", $"No video found in your url:\n\n{videoUrl}\n\nPlease check url and try again!", "OK");
+                });
                 ShowButtons = true;
-
                 return;
             }
             SingleUrlEntryText = string.Empty;
@@ -311,7 +343,7 @@ namespace YTDownloaderMAUI.ViewModels
             StatusMessage = _defaultStatusText;
         }
 
-        private async Task SaveFileScopedStorage(IStreamInfo streamInfo, string fileName)
+        private async Task SaveFileScopedStorage(IStreamInfo streamInfo, string fileName, CancellationToken cancellationToken)
         {
             try
             {
@@ -329,22 +361,48 @@ namespace YTDownloaderMAUI.ViewModels
                         if (outputStream != null)
                         {
                             var youtubeClient = new YoutubeClient();
-                            await youtubeClient.Videos.Streams.CopyToAsync(streamInfo, outputStream);
+                            await youtubeClient.Videos.Streams.CopyToAsync(streamInfo, outputStream, null, cancellationToken);
                         }
-
                     }
                 }
-
+            }
+            catch (System.OperationCanceledException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
-                var alert = Microsoft.Maui.Controls.Application.Current?.MainPage?.DisplayAlert("Video Download Error", $"Something went wrong with your download.\n\nPlease contact the developer!\n\n{ex.Message}", "OK");
-                if (alert != null)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await alert;
-                }
-                return;
+                    await App.Current?.MainPage?.DisplayAlert("Video Download Error", $"Something went wrong with your download.\n\nPlease contact the developer!\n\n{ex.Message}", "OK");
+                });
             }
+        }
+
+        private void DeleteEntry(VideoEntry entry)
+        {
+            if (entry != null && VideoEntries.Contains(entry))
+            {
+                VideoEntries.Remove(entry);
+                if (VideoEntries.Count == 0)
+                {
+                    StatusMessage = _defaultStatusText;
+                }
+            }
+        }
+
+        private async Task AddDummys()
+        {
+            StatusMessage = "Adding dummys to list...";
+            int maxCount = _dummyURLS.Length;
+            for (int i = 0; i < maxCount; i++)
+            {
+                IsBusy = true;
+                ShowButtons = false;
+                StatusMessage = $"Adding dummy {i + 1}/{maxCount}...";
+                await AddSingleVideoAsync(_dummyURLS[i]);
+            }
+            ShowButtons = true;
         }
 
         private async Task ClearSingle()
@@ -353,17 +411,13 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 return;
             }
-            if (Microsoft.Maui.Controls.Application.Current?.MainPage != null)
+            if (App.Current?.MainPage != null)
             {
-                bool isOkay = await Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert("Clear video list.", $"Are you sure that you want delete all {VideoEntries.Count}x videos from list?", "Yes", "No");
+                bool isOkay = await App.Current.MainPage.DisplayAlert("Clear video list", $"Are you sure that you want to delete all {VideoEntries.Count} videos from the list?", "Yes", "No");
                 if (isOkay)
                 {
-                    Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() => VideoEntries.Clear());
+                    MainThread.BeginInvokeOnMainThread(() => VideoEntries.Clear());
                     StatusMessage = _defaultStatusText;
-                }
-                else
-                {
-                    return;
                 }
             }
         }

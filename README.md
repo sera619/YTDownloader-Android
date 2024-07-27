@@ -64,12 +64,16 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## Release Notes
 
+### Version 3.1.4 (Release Version)
+- implementing cancel download feature
+
+<details>
+<summary>Older releases</summary>
+
 ### Version 3.1.2 (Release Version)
 - Add music icon for entrys
 - fixing serveral display bugs
 
-<details>
-<summary>Older releases</summary>
 
 ### Version 3.1.1 (Release Version)
 - implementing settings
