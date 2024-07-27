@@ -10,7 +10,9 @@ namespace YTDownloaderMAUI.Services
     {
 
         private const string CheckForUpdatesKey = "CheckForUpdatesOnStart";
+        private const string CheckForHomepageAnimationKey = "CheckForHomepageAnimation";
         private static readonly bool DefaultCheckForUpdates = true;
+        private static readonly bool DefaultCheckForHompageAnimation = true;
 
         public static bool GetCheckForUpdatesOnStart()
         {
@@ -20,6 +22,17 @@ namespace YTDownloaderMAUI.Services
         public static void SetCheckForUpdatesOnStart(bool value) 
         {
             Preferences.Set(CheckForUpdatesKey, value);
+        }
+
+
+        public static bool GetCheckForHomepageAnimation() 
+        { 
+            return Preferences.Get(CheckForHomepageAnimationKey, DefaultCheckForHompageAnimation);
+        }
+
+        public static void SetCheckForHomepageAnimation(bool value)
+        { 
+            Preferences.Set(CheckForHomepageAnimationKey , value);
         }
 
     }
