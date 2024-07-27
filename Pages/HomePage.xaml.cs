@@ -16,6 +16,7 @@ public partial class HomePage : ContentPage
 		InitializeComponent();
         _notificationService = new LocalNotificationService();
         CheckVersions();
+        
 
 #if ANDROID
             //RequestStoragePermission();
@@ -24,6 +25,29 @@ public partial class HomePage : ContentPage
     }
 
 #if ANDROID
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (SettingsService.GetCheckForHomepageAnimation()) 
+        { 
+            StartIntroAnimation();
+        }
+    }
+
+    private async void StartIntroAnimation()
+    {
+        HomepageInfoLayout.Opacity = 0;
+        HomepageIcon.Rotation = 0;
+        await Task.WhenAny<bool>
+        (
+          HomepageIcon.RotateTo(360, 2150),
+          HomepageIcon.ScaleTo(1.3, 1000)
+        );
+        await HomepageIcon.ScaleTo(1, 1000);
+        await HomepageInfoLayout.FadeTo(1, 2000);
+        HomepageIcon.Rotation = 0;
+    }
 
 
     private async void CheckVersions()

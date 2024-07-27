@@ -14,13 +14,13 @@
     <Shell.ToolbarItems>
         <ToolbarItem  Priority="1" Clicked="OnSettingsButtonClicked" Order="Default">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe8b8;" Color="#9C0000" Size="35" />
+                <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe8b8;" Color="#9C0000" Size="30" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
         <ToolbarItem Text="Exit" Priority="2" Clicked="AppMenuExitButton_Clicked" Order="Default">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe8ac;" Color="#9C0000" Size="35" />
+                <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe8ac;" Color="#9C0000" Size="30" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </Shell.ToolbarItems>

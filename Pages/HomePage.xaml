@@ -6,21 +6,31 @@
              BackgroundColor="#121212"
              Title="YT Downloader Android"
              >
-    
+
     <ContentPage.BindingContext>
         <viewmodels:HomeViewModel />
     </ContentPage.BindingContext>
-    
+
     <ScrollView HorizontalScrollBarVisibility="Default">
         <VerticalStackLayout  Padding="20,20" Spacing="5" VerticalOptions="Center">
-            <Image Source="transparent_icon.svg" HeightRequest="250" Aspect="AspectFit" SemanticProperties.Description="YouTube Downloader logo" />
-            <Label Text="YT Downloader" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" Margin="0" />
+            <Image x:Name="HomepageIcon" Source="transparent_icon.svg" HeightRequest="250" Aspect="AspectFit" SemanticProperties.Description="YouTube Downloader logo" />
 
-            <Label Text="Android"  Style="{StaticResource CardHeaderLabelStyle}" Margin="0" Padding="0" HorizontalTextAlignment="Center"  SemanticProperties.HeadingLevel="Level2" />
+            <VerticalStackLayout x:Name="HomepageInfoLayout" Spacing="10">
 
-            <Label FontSize="Body" Margin="10, 5, 10, 5" Padding="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="YT Downloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists."  SemanticProperties.HeadingLevel="Level2" SemanticProperties.Description="Welcome to YT Downloader." />
+                <Label Text="YT Downloader" Style="{StaticResource Headline}" FontFamily="OpenSansSemibold" FontAttributes="Italic" SemanticProperties.HeadingLevel="Level1" Margin="0" />
+                <HorizontalStackLayout  HorizontalOptions="CenterAndExpand" Spacing="10" >
+                    <Image VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Image.Source>
+                            <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe859;" Color="#9C0000" Size="40" />
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Android"  VerticalTextAlignment="Center" Style="{StaticResource CardHeaderLabelStyle}" Margin="0" Padding="0" HorizontalTextAlignment="Center"  SemanticProperties.HeadingLevel="Level2" />
 
-            <Button Text="Start" TextColor="WhiteSmoke" Padding="10,10" FontSize="Body" Command="{Binding StartUpCommand}" ImageSource="start_icon.svg" HeightRequest="45" WidthRequest="140" Style="{StaticResource OutlinedDarkRedButton}" />
+                </HorizontalStackLayout>
+                <Label FontSize="Body" Margin="10, 0, 10, 15" Padding="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="YT Downloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists."  SemanticProperties.HeadingLevel="Level2" SemanticProperties.Description="Welcome to YT Downloader." />
+
+                <Button Text="Start" TextColor="WhiteSmoke" Padding="10,10" FontSize="Body" Command="{Binding StartUpCommand}" ImageSource="start_icon.svg" HeightRequest="45" WidthRequest="140" Style="{StaticResource OutlinedDarkRedButton}" />
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
