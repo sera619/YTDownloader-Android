@@ -23,16 +23,20 @@
                 <VerticalStackLayout Spacing="10">
 
                     <VerticalStackLayout>
-                        
-                    <Label Text="Common Settings" Style="{StaticResource CardHeaderLabelStyle}" />
-                    <TableView  Intent="Settings">
-                        <TableRoot>
-                            <TableSection>
-                                <SwitchCell Text="Check for updates on start" On="{Binding IsCheckForUpdates}" />
-                            </TableSection>
-                        </TableRoot>
-                    </TableView>
+                        <Label Text="Common Settings" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <TableView  Intent="Settings">
+                            <TableRoot>
+                                <TableSection>
+                                    <SwitchCell Text="Check for updates on start" On="{Binding IsCheckForUpdates}" />
+                                </TableSection>
+                                <TableSection>
+                                    <SwitchCell Text="Show home animation" On="{Binding IsHomepageAnimation}" />
+                                </TableSection>
+                            </TableRoot>
+                        </TableView>
                     </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
 
                     <VerticalStackLayout>
@@ -45,7 +49,7 @@
                             <Button ImageSource="check_update_icon.svg" HeightRequest="35" WidthRequest="200" Text="Check For Updates" Style="{StaticResource DarkRedButton}" Command="{Binding CheckForUpdatesCommand}" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
-                    
+
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
