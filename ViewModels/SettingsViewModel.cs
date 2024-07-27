@@ -16,6 +16,19 @@ namespace YTDownloaderMAUI.ViewModels
         public ICommand CheckForUpdatesCommand { get; }
         public ICommand OpenDownloadUrlCommand { get; }
 
+
+        private bool _isHomepageAnimation;
+        public bool IsHomepageAnimation
+        {
+            get => _isHomepageAnimation;
+            set 
+            {
+                _isHomepageAnimation = value;
+                OnPropertyChanged();
+                SettingsService.SetCheckForHomepageAnimation(value);
+            }
+        }
+
         private bool _isCheckForUpdates;
         public bool IsCheckForUpdates
         {
@@ -72,6 +85,7 @@ namespace YTDownloaderMAUI.ViewModels
             OpenDownloadUrlCommand = new Command(async () => await OpenDownloadURL());
             CheckUpdateText = _defaultUpdateCheckText;
             IsCheckForUpdates = SettingsService.GetCheckForUpdatesOnStart();
+            IsHomepageAnimation = SettingsService.GetCheckForHomepageAnimation();
         }
 
 
