@@ -115,7 +115,7 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 - Implement download progress tracking
 - Add option to select audio quality
-- Setup cancel download and adding
+- Setup cancel download and adding :ballot_box_with_check:
 - Implement a feature to resume interrupted downloads
 
 ## Support
