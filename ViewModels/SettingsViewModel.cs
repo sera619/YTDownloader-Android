@@ -9,7 +9,7 @@ namespace YTDownloaderMAUI.ViewModels
     {
         public ICommand CheckForUpdatesCommand { get; }
         public ICommand OpenDownloadUrlCommand { get; }
-
+        public ICommand UpdateStorageInfoCommand { get; }
 
         private bool _isHomepageAnimation;
         public bool IsHomepageAnimation
@@ -37,6 +37,33 @@ namespace YTDownloaderMAUI.ViewModels
                 }
             }
         }
+        private string _externalStorageInfo = string.Empty;
+        public string ExternalStorageInfo
+        {
+            get => _externalStorageInfo;
+            set { _externalStorageInfo = value; OnPropertyChanged(); }
+        }
+
+        private string _internalStorageInfo = string.Empty;
+        public string InternalStorageInfo
+        {
+            get => _internalStorageInfo;
+            set { _internalStorageInfo = value; OnPropertyChanged(); }
+        }
+
+        private double _externalStorageProgress = 0;
+        public double ExternalStorageProgress
+        {
+            get => _externalStorageProgress;
+            set { _externalStorageProgress = value; OnPropertyChanged(); }
+        }
+
+        private double _internalStorageProgress = 0;
+        public double InternalStorageProgress
+        {
+            get => _internalStorageProgress;
+            set { _internalStorageProgress = value; OnPropertyChanged(); }
+        }
 
         private const string _defaultUpdateCheckText = "Press the button to check...";
 
@@ -44,44 +71,60 @@ namespace YTDownloaderMAUI.ViewModels
         public string CheckUpdateText
         {
             get => _checkUpdateText;
-            set
-            {
-                _checkUpdateText = value;
-                OnPropertyChanged();
-            }
+            set{ _checkUpdateText = value; OnPropertyChanged(); }
         }
 
         private bool _isDownloadButtonVisible = false;
         public bool IsDownloadButtonVisible
         {
             get => _isDownloadButtonVisible;
-            set
-            {
-                _isDownloadButtonVisible = value;
-                OnPropertyChanged();
-            }
+            set { _isDownloadButtonVisible = value; OnPropertyChanged(); }
         }
 
         private bool _isChecking = false;
         public bool IsChecking
         {
             get => _isChecking;
-            set
-            {
-                _isChecking = value;
-                OnPropertyChanged();
-            }
+            set { _isChecking = value; OnPropertyChanged(); }
         }
+
 
         public SettingsViewModel()
         {
             CheckForUpdatesCommand = new Command(async () => await CheckForUpdates());
             OpenDownloadUrlCommand = new Command(async () => await OpenDownloadURL());
+            UpdateStorageInfoCommand = new Command(UpdateStorageInfo);
+
             CheckUpdateText = _defaultUpdateCheckText;
             IsCheckForUpdates = SettingsService.GetCheckForUpdatesOnStart();
             IsHomepageAnimation = SettingsService.GetCheckForHomepageAnimation();
+            UpdateStorageInfo();
         }
 
+        private void UpdateStorageInfo()
+        {
+            var externalStorage = StorageService.GetExternalStorageInfo();
+            var internalStorage = StorageService.GetInternalStorageInfo();
+
+            ExternalStorageInfo = $"Externalstorage:\n{FormatBytes(externalStorage.Available)} / {FormatBytes(externalStorage.Total)}";
+            InternalStorageInfo = $"Internalstorage:\n{FormatBytes(internalStorage.Available)} / {FormatBytes(internalStorage.Total)}";
+
+            ExternalStorageProgress = 1 - ((double)externalStorage.Available / externalStorage.Total);
+            InternalStorageProgress = 1 - ((double)internalStorage.Available / internalStorage.Total);
+        }
+
+        private string FormatBytes(long bytes)
+        {
+            string[] suffixes = { "B", "KB", "MB", "GB", "TB" };
+            int counter = 0;
+            decimal number = (decimal)bytes;
+            while (Math.Round(number / 1024) >= 1)
+            {
+                number /= 1024;
+                counter++;
+            }
+            return string.Format("{0:n1} {1}", number, suffixes[counter]);
+        }
 
         private async Task OpenDownloadURL()
         {

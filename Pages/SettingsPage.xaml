@@ -38,7 +38,6 @@
 
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
-
                     <VerticalStackLayout>
                         <Label Text="Check for updates" Style="{StaticResource CardHeaderLabelStyle}" />
                         <VerticalStackLayout Spacing="10">
@@ -47,6 +46,21 @@
                             <ActivityIndicator Color="Red" IsRunning="{Binding IsChecking}" />
                             <Button ImageSource="download_icon.svg" WidthRequest="200" HeightRequest="35" Text="Download new version" IsVisible="{Binding IsDownloadButtonVisible}" Style="{StaticResource DarkRedButton}"  Command="{Binding OpenDownloadUrlCommand}"/>
                             <Button ImageSource="check_update_icon.svg" HeightRequest="35" WidthRequest="200" Text="Check For Updates" Style="{StaticResource DarkRedButton}" Command="{Binding CheckForUpdatesCommand}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout>
+                        <Label Text="Storage Info" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <VerticalStackLayout Spacing="10">
+                            <Label HorizontalTextAlignment="Center" Text="{Binding InternalStorageInfo}" Style="{StaticResource BodyLabelStyle}" />
+                            <ProgressBar Progress="{Binding InternalStorageProgress}" ProgressColor="Yellow" />
+                            
+                            <Label HorizontalTextAlignment="Center" Text="{Binding ExternalStorageInfo}" Style="{StaticResource BodyLabelStyle}" />
+                            <ProgressBar Progress="{Binding ExternalStorageProgress}" ProgressColor="Cyan" />
+
+                            <Button Text="Refresh" ImageSource="check_update_icon.svg" WidthRequest="200" HeightRequest="35" Command="{Binding UpdateStorageInfoCommand}" Style="{StaticResource DarkRedButton}"/>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
 

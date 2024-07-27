@@ -1,3 +1,5 @@
+using YTDownloaderMAUI.Services;
+
 namespace YTDownloaderMAUI.Pages;
 
 public partial class SettingsPage : ContentPage
@@ -5,8 +7,10 @@ public partial class SettingsPage : ContentPage
     public SettingsPage()
     {
         InitializeComponent();
-
     }
+
+
+
     protected override bool OnBackButtonPressed()
     {
         // Optionally, you can add custom logic here
