@@ -18,6 +18,7 @@ namespace YTDownloaderMAUI
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
                 });
             builder.Services.AddSingleton<ILocalNotificationService, LocalNotificationService>();
 #if DEBUG
