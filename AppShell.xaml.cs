@@ -16,12 +16,12 @@ namespace YTDownloaderMAUI
 
         private async void OnSettingsButtonClicked(object sender, EventArgs e) {
 
-            await Shell.Current.GoToAsync("//HomePage/SettingsPage");
+            await Shell.Current.GoToAsync("//DownloadPage/SettingsPage");
         }
 
         private async void AppMenuExitButton_Clicked(object sender, EventArgs e)
         {
-            var popup = new YTPopup("Exit YT Downloader", "All your download entries will be deleted!\nDo you really want to exit?", "Confirm", "Decline");
+            var popup = new YTPopup("Exit YT Downloader", "All your download entries will be deleted!\n\nDo you really want to exit?", "Confirm", "Decline");
             var result = await this.ShowPopupAsync(popup);
             if(result is bool boolResult)
             {
