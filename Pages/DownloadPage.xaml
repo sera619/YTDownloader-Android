@@ -43,7 +43,7 @@
                             <RowDefinition Height="Auto" />
 
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Margin="80,0,0,0" Text="{Binding VideoModeText}"  HorizontalOptions="Center" FontAutoScalingEnabled="True" FontSize="16" VerticalOptions="Center" />
+                        <Label Grid.Row="0" Grid.Column="0" Margin="40,0,0,0" Text="{Binding VideoModeText}"  HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAutoScalingEnabled="True" FontSize="16" VerticalOptions="Center" />
                         <Switch Grid.Row="0" Grid.Column="1" IsEnabled="{Binding ShowButtons}" IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Grid>
                         
