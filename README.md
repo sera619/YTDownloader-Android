@@ -72,11 +72,10 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## 📝 Release Notes
 
-### Version 3.1.9 (Release Version)
-- implementing feature to open download directory
-- update help information about settings
-- implementing storage capacity overview
-- fix keyboard still showing after add video to list or paste url in
+
+### Version 3.2.0 (Release Version)
+- adjust the introanimation
+- adding copyright
 
 
 For older releases click the tab below.
@@ -84,6 +83,12 @@ For older releases click the tab below.
 <details>
 <summary>Older releases</summary>
 
+
+### Version 3.1.9 (Release Version)
+- implementing feature to open download directory
+- update help information about settings
+- implementing storage capacity overview
+- fix keyboard still showing after add video to list or paste url in
 
 ### Version 3.1.6 (Release Version)
 - update Toolbaritem size
