@@ -14,6 +14,7 @@
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
 
+                <!-- Valid URL section -->
                 <VerticalStackLayout Spacing="10">
                     <Label Text="How get a valid youtube url?" Style="{StaticResource CardHeaderLabelStyle}" />
                     <Label Text="YT Downloader has strict url input guidelines to ensure the security of the app. With the update v2.9.8, the YT Downloader now also supports the use of so-called 'shortend' urls. These are urls that have been shortened and only contain important parameters. "
@@ -32,48 +33,39 @@ https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8
                     </Label>
                     <Label Text="In the android Youtube app you can simply select the option 'copy link/url' via the 'share' button and use it conveniently in the app."
                             Style="{StaticResource BodyLabelStyle}" />
-                    <Label Text="The YT Downloader software takes care of converting and checking the URL in the background to make it available for download."
-        Style="{StaticResource BodyLabelStyle}" />
-
+                    <Label Text="The YT Downloader software takes care of converting and checking the URL in the background to make it available for download." Style="{StaticResource BodyLabelStyle}" />
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
-                    <Label Text="Start download" Style="{StaticResource CardHeaderLabelStyle}" />
-                    <Label Text="To add future videos to the download waiting list you need to follow these steps:"
-        Style="{StaticResource BodyLabelStyle}" />
-                    <VerticalStackLayout x:Name="UsageHelpLayout" Margin="65,0,0,0" Spacing="5">
 
+                    <!-- Settings section -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Settings" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <Label Text="YT Downloader offers a variety of ways to customize the software. To open the settings click the settings icon at the top right of the screen." Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="From visual properties to update settings. It is also possible to check for updates manually. You can also check if you have enough memory left to download more videos." Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="To use the settings, follow the instructions. More options will be enabled in future updates. Please note that the app is in an early stage of development." Style="{StaticResource BodyLabelStyle}" />
                     </VerticalStackLayout>
-
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
+                    <!-- Start download section -->
+                    <Label Text="Start download" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="To add future videos to the download waiting list you need to follow these steps:" Style="{StaticResource BodyLabelStyle}" />
+                    <VerticalStackLayout x:Name="UsageHelpLayout" Margin="65,0,0,0" Spacing="5">
+                    </VerticalStackLayout>
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <!-- Videomode section -->
                     <VerticalStackLayout x:Name="VideoModeHelpLayout" Spacing="5">
                         <Label Text="Switch single video/playlist Mode" Style="{StaticResource CardHeaderLabelStyle}" />
-
                         <Label Text="YT Downloader supports adding single videos as well as playlists. The 'Single Video' mode is active by default. To change this, click on the button next to the mode display. The mode is set to 'Playlist' when the switch is red and thus activated." Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="Please note that when the 'Playlist' mode is active the app only accepts playlist URL's that come from a Youtube playlist."
                             Style="{StaticResource BodyLabelStyle}" />
-
                     </VerticalStackLayout>
-
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
-                    <Label IsVisible="False" Text="Below you will find screenshots that describe the process once again."
-                            Style="{StaticResource BodyLabelStyle}" />
-
-                    <VerticalStackLayout IsVisible="False">
-                        <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 1:" />
-                        <Image Source="help_img_1.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
-                    </VerticalStackLayout>
-                    <VerticalStackLayout IsVisible="False" >
-
-                        <Label Style="{StaticResource BodyLabelStyle}" Text="Screenshot 2:" />
-                        <Image Source="help_img_2.jpeg" VerticalOptions="Center" HorizontalOptions="Center" />
-                    </VerticalStackLayout>
-
+                    <!-- Still problems section -->
                     <Label Text="Still have problems?" Style="{StaticResource CardHeaderLabelStyle}" />
                     <Label Text="If you need further help, have suggestions or other problems please go to the about page and under 'contact' you will find ways to get in touch with us."
                         Style="{StaticResource BodyLabelStyle}" />
-
                     <Button ImageSource="info_icon.svg" HeightRequest="35" WidthRequest="150" x:Name="GoToAboutButton" Clicked="GoToAboutButton_Clicked" Style="{StaticResource DarkRedButton}" Text="Go to About" />
 
                 </VerticalStackLayout>
