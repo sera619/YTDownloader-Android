@@ -19,6 +19,7 @@ namespace YTDownloaderMAUI.ViewModels
         public ICommand ClearSingleCommand { get; }
         public ICommand AddFileCommand { get; }
         public ICommand CancelDownloadCommand { get; }
+        public ICommand OpenFileLocationCommand { get; }
 
         private CancellationTokenSource? _cancellationTokenSource;
         private bool _canCancel = false;
@@ -39,15 +40,7 @@ namespace YTDownloaderMAUI.ViewModels
         };
 
         private bool _showButtons = true;
-        public bool ShowButtons
-        {
-            get => _showButtons;
-            set
-            {
-                _showButtons = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool ShowButtons {get => _showButtons; set { _showButtons = value; OnPropertyChanged(); }}
 
         private bool _isBusy = false;
         public bool IsBusy
@@ -109,6 +102,7 @@ namespace YTDownloaderMAUI.ViewModels
             AddFileCommand = new Command<string>(async (url) => await AddVideoAsync(url));
             ClearSingleCommand = new Command(async () => await ClearSingle());
             CancelDownloadCommand = new Command(CancelDownload, () => CanCancel);
+            OpenFileLocationCommand = new Command(OpenFileLocation);
 
             StatusMessage = _defaultStatusText;
         }
@@ -412,5 +406,22 @@ namespace YTDownloaderMAUI.ViewModels
                 }
             }
         }
+
+        private void OpenFileLocation()
+        {
+            var intent = new Intent(Intent.ActionView);
+            var uri = Android.Net.Uri.Parse(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryRingtones).AbsolutePath);
+            intent.SetDataAndType(uri, "*/*");
+            intent.AddFlags(ActivityFlags.NewTask);
+            try
+            {
+                Android.App.Application.Context.StartActivity(intent);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to open file location: {ex}");
+            }
+        }
+
     }
 }
