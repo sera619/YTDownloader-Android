@@ -53,9 +53,10 @@
                         <Button IsEnabled="{Binding ShowButtons}" ImageSource="paste_icon.svg" Text="Paste" Style="{StaticResource DarkRedButton}"  Padding="8" WidthRequest="120" CornerRadius="5" HeightRequest="35" x:Name="PasteClipboardButton" Clicked="PasteClipboardButton_Clicked" />
                     </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Grid.Row="5" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
-                        <Button Text="Need Help?" IsEnabled="{Binding ShowButtons}" WidthRequest="140" TextColor="WhiteSmoke"  Style="{StaticResource OutlinedDarkRedButton}" HorizontalOptions="Start"  ImageSource="help_icon.svg" HeightRequest="35" x:Name="HelpButton" Clicked="HelpButton_Clicked" />
-                    </HorizontalStackLayout>
+                    <VerticalStackLayout Grid.Row="5" Grid.ColumnSpan="2" Spacing="15" Margin="0,15,0,10" HorizontalOptions="Center">
+                        <Button Text="Need Help?" IsEnabled="{Binding ShowButtons}" WidthRequest="140" TextColor="WhiteSmoke"  HorizontalOptions="Center" Style="{StaticResource OutlinedDarkRedButton}" ImageSource="help_icon.svg" HeightRequest="35" x:Name="HelpButton" Clicked="HelpButton_Clicked" />
+                        <Button Text="Open downloads" Command="{Binding OpenFileLocationCommand}" IsEnabled="{Binding ShowButtons}" WidthRequest="220" TextColor="WhiteSmoke"  Style="{StaticResource OutlinedDarkRedButton}" HorizontalOptions="Center"  ImageSource="folder_open_icon.svg" HeightRequest="35" />
+                    </VerticalStackLayout>
 
                     <HorizontalStackLayout Grid.Row="4" Grid.ColumnSpan="2" Spacing="10" Margin="0,5,0,5" HorizontalOptions="Center">
                         <Button IsEnabled="{Binding ShowButtons }" Text="Reset" ImageSource="reset_icon.svg" WidthRequest="140" HeightRequest="35" Command="{Binding ClearSingleCommand}" Style="{StaticResource DarkRedButton}" />
