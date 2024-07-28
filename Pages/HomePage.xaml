@@ -21,7 +21,7 @@
                 <HorizontalStackLayout  HorizontalOptions="CenterAndExpand" Spacing="10" >
                     <Image VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                         <Image.Source>
-                            <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe859;" Color="#9C0000" Size="40" />
+                            <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe859;" Color="#CC0000" Size="40" />
                         </Image.Source>
                     </Image>
                     <Label Text="Android"  VerticalTextAlignment="Center" Style="{StaticResource CardHeaderLabelStyle}" Margin="0" Padding="0" HorizontalTextAlignment="Center"  SemanticProperties.HeadingLevel="Level2" />
@@ -30,6 +30,7 @@
                 <Label FontSize="Body" Margin="10, 0, 10, 15" Padding="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="YT Downloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists."  SemanticProperties.HeadingLevel="Level2" SemanticProperties.Description="Welcome to YT Downloader." />
 
                 <Button Text="Start" TextColor="WhiteSmoke" Padding="10,10" FontSize="Body" Command="{Binding StartUpCommand}" ImageSource="start_icon.svg" HeightRequest="45" WidthRequest="140" Style="{StaticResource OutlinedDarkRedButton}" />
+                <Label TextColor="#777" Text="App design &amp; development © 2024 S3R43o3" Margin="0,20,0,0" FontAttributes="Italic" FontFamily="OpenSansSemibold" FontSize="14" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
