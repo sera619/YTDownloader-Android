@@ -4,6 +4,13 @@
 
 YT Downloader is a cross-platform application built with .NET MAUI that allows users to download audio from YouTube videos and playlists. It is focused to work on Android.
 
+**Please Note:**
+> **This software is at an early stage of development. The software receives regular updates, currently almost daily. I, S3R43o3, am currently the sole developer, so please be patient. 
+> Furthermore, I am far from being a professional with the MAUI framework. 
+> For this reason I apologize for any bugs and errors that may occur. 
+> Please contact me if you recognize any bugs or errors.
+>If you are a developer and would like to help me with this project, please see the Contributing section below.**
+
 ## ✨ Features
 
 - Download audio from individual YouTube videos
@@ -65,6 +72,19 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## 📝 Release Notes
 
+### Version 3.1.9 (Release Version)
+- implementing feature to open download directory
+- update help information about settings
+- implementing storage capacity overview
+- fix keyboard still showing after add video to list or paste url in
+
+
+For older releases click the tab below.
+
+<details>
+<summary>Older releases</summary>
+
+
 ### Version 3.1.6 (Release Version)
 - update Toolbaritem size
 - implement HomeViewModel 
@@ -72,12 +92,6 @@ This application is for personal use only. Please respect YouTube's terms of ser
 - add a logo animation on HomePage
 - add option for toggle HomePage animation
 - update SettingsService for new option homepage animation
-
-
-For older releases click the tab below.
-
-<details>
-<summary>Older releases</summary>
 
 ### Version 3.1.4 (Release Version)
 - implementing cancel download feature
@@ -124,10 +138,12 @@ For older releases click the tab below.
 
 ## 🗺️ Roadmap
 
-- Implement download progress tracking
+- Implement download progress tracking :ballot_box_with_check:
 - Add option to select audio quality
-- Setup cancel download and adding :ballot_box_with_check:
+- Setup cancel download :ballot_box_with_check:
 - Implement a feature to resume interrupted downloads
+- Implement user settings :ballot_box_with_check:
+
 
 ## 🆘 Support
 
