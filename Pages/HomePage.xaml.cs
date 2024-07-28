@@ -36,10 +36,11 @@ public partial class HomePage : ContentPage
     {
         HomepageInfoLayout.Opacity = 0;
         HomepageIcon.Rotation = 0;
+        HomepageIcon.Scale = 0;
         await Task.WhenAny<bool>
         (
           HomepageIcon.RotateTo(360, 2150),
-          HomepageIcon.ScaleTo(1.3, 1000)
+          HomepageIcon.ScaleTo(1.3, 1250)
         );
         await HomepageIcon.ScaleTo(1, 1000);
         await HomepageInfoLayout.FadeTo(1, 2000);
