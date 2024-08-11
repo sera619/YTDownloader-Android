@@ -73,15 +73,22 @@ This application is for personal use only. Please respect YouTube's terms of ser
 ## 📝 Release Notes
 
 
-### Version 3.2.0 (Release Version)
-- adjust the introanimation
-- adding copyright
-
+### Version 3.2.1 (Release Version)
+- update Colortheme 
+- adjust headersize help
+- adjust downloadpage layout
+- add user option to start on downloadpage
+ 
 
 For older releases click the tab below.
 
 <details>
 <summary>Older releases</summary>
+
+### Version 3.2.0 (Release Version)
+- adjust the introanimation
+- adding copyright
+
 
 
 ### Version 3.1.9 (Release Version)

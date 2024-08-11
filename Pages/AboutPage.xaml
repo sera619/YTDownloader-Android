@@ -9,11 +9,11 @@
         <viewModels:AboutViewModel/>
     </ContentPage.BindingContext>
 
-    <ScrollView VerticalOptions="FillAndExpand">
+    <ScrollView>
         <StackLayout Padding="20,5,20,10" Spacing="5">
             <views:PageHeaderView HeaderText="All information about YT Downloader." />
 
-            <Border Margin="0,10,0,0" Padding="20" Stroke="#CC0000" BackgroundColor="#222" StrokeThickness="1">
+            <Border Margin="0,10,0,0" Padding="20" Stroke="#fe0039" BackgroundColor="#222" StrokeThickness="1">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
@@ -45,7 +45,7 @@
                         <Label Text="Windows Desktop Version" Style="{StaticResource SubHeaderLabelStyle}" />
                         <Label Text="A Windows Desktop version of YTDownloader is also available for Windows 10/11 x64. It can be downloaded from GitHub:"
                            Style="{StaticResource BodyLabelStyle}" />
-                        <Button Text="Windows Desktop Version" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YoutubeDownloader_WinUI3"  HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="windows_icon.svg" Style="{StaticResource DarkRedButton}" />
+                        <Button Text="Windows Desktop Version" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YoutubeDownloader_WinUI3"  HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="windows_icon.svg" Style="{StaticResource RedButton}" />
                     </VerticalStackLayout>
 
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
@@ -55,7 +55,7 @@
                         <Label Text="We appreciate your interest in our YT Downloader app and want to make sure you have the best experience possible. If you have any questions, suggestions or problems using our app, please do not hesitate to contact us. " Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="Detailed contact information as well as links to our social media channels can be found below. We look forward to hearing from you and helping you with any concerns you may have about the YT Downloader app."
                            Style="{StaticResource BodyLabelStyle}" />
-                        <Button Text="YT Downloader on Github" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YTDownloader-Android" HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Style="{StaticResource DarkRedButton}" />
+                        <Button Text="YT Downloader on Github" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YTDownloader-Android" HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Style="{StaticResource RedButton}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Margin="0,10,0,0">
                         <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,0.5*">
@@ -66,9 +66,9 @@
                         </Grid>
                         <Label Margin="0,15,0,5" Text="Or you can reach out the social media with the following buttons." LineBreakMode="WordWrap" HorizontalTextAlignment="Start" Style="{StaticResource BodyLabelStyle}"/>
                         <FlexLayout Margin="0,10,0,5" AlignContent="Center" JustifyContent="SpaceAround">
-                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.github.com/sera619" Style="{StaticResource OutlinedDarkRedButton}" />
-                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="youtube_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.youtube.com/@S3R43o3" Style="{StaticResource OutlinedDarkRedButton}" />
-                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="codepen_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://codepen.io/sera619" Style="{StaticResource OutlinedDarkRedButton}" />
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.github.com/sera619" Style="{StaticResource OutlinedRedButton}" />
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="youtube_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.youtube.com/@S3R43o3" Style="{StaticResource OutlinedRedButton}" />
+                            <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="codepen_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://codepen.io/sera619" Style="{StaticResource OutlinedRedButton}" />
                         </FlexLayout>
                     </VerticalStackLayout>
                     

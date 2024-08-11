@@ -9,7 +9,20 @@ namespace YTDownloaderMAUI.ViewModels
     {
         public ICommand CheckForUpdatesCommand { get; }
         public ICommand OpenDownloadUrlCommand { get; }
-        public ICommand UpdateStorageInfoCommand { get; }
+        // public ICommand UpdateStorageInfoCommand { get; }
+
+        private bool _isStartFromDownloadPage;
+        public bool IsStartFromDownloadPage
+        {
+            get => _isStartFromDownloadPage;
+            set
+            {
+                _isStartFromDownloadPage = value;
+                OnPropertyChanged();
+                SettingsService.SetStartFromDownloadPage(value);
+            }
+        }
+
 
         private bool _isHomepageAnimation;
         public bool IsHomepageAnimation
@@ -93,14 +106,16 @@ namespace YTDownloaderMAUI.ViewModels
         {
             CheckForUpdatesCommand = new Command(async () => await CheckForUpdates());
             OpenDownloadUrlCommand = new Command(async () => await OpenDownloadURL());
-            UpdateStorageInfoCommand = new Command(UpdateStorageInfo);
+            // UpdateStorageInfoCommand = new Command(UpdateStorageInfo);
 
             CheckUpdateText = _defaultUpdateCheckText;
             IsCheckForUpdates = SettingsService.GetCheckForUpdatesOnStart();
             IsHomepageAnimation = SettingsService.GetCheckForHomepageAnimation();
-            UpdateStorageInfo();
+            IsStartFromDownloadPage = SettingsService.GetStartFromDownloadPage();
+            // UpdateStorageInfo();
         }
 
+        /*
         private void UpdateStorageInfo()
         {
             var externalStorage = StorageService.GetExternalStorageInfo();
@@ -112,6 +127,7 @@ namespace YTDownloaderMAUI.ViewModels
             ExternalStorageProgress = 1 - ((double)externalStorage.Available / externalStorage.Total);
             InternalStorageProgress = 1 - ((double)internalStorage.Available / internalStorage.Total);
         }
+        */
 
         private string FormatBytes(long bytes)
         {

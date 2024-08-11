@@ -5,8 +5,11 @@
 
         private const string CheckForUpdatesKey = "CheckForUpdatesOnStart";
         private const string CheckForHomepageAnimationKey = "CheckForHomepageAnimation";
+        private const string StartFromDownloadPageKey = "StartFromDownloadPage";
         private static readonly bool DefaultCheckForUpdates = true;
         private static readonly bool DefaultCheckForHompageAnimation = true;
+        private static readonly bool DefaultStartFromDownloadPage = false;
+
 
         public static bool GetCheckForUpdatesOnStart()
         {
@@ -27,6 +30,17 @@
         public static void SetCheckForHomepageAnimation(bool value)
         {
             Preferences.Set(CheckForHomepageAnimationKey, value);
+        }
+
+
+        public static bool GetStartFromDownloadPage()
+        {
+            return Preferences.Get(StartFromDownloadPageKey, DefaultStartFromDownloadPage);
+        }
+
+        public static void SetStartFromDownloadPage(bool value) 
+        {
+            Preferences.Set(StartFromDownloadPageKey, value);
         }
 
     }

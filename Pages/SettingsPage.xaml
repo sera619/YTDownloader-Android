@@ -16,14 +16,14 @@
         <VerticalStackLayout Padding="20,5,20,10" Spacing="10" >
             <views:PageHeaderView HeaderText="Customize YT Downloader." />
 
-            <Border Margin="0,10,0,0" Padding="20" Stroke="#CC0000" BackgroundColor="#222" StrokeThickness="1">
+            <Border Margin="0,10,0,0" Padding="20" Stroke="#fe0039" BackgroundColor="#222" StrokeThickness="1">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
                 <VerticalStackLayout Spacing="10">
 
                     <VerticalStackLayout>
-                        <Label Text="Common Settings" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <Label Text="Common Settings" Style="{StaticResource SubHeaderLabelStyle}" />
                         <TableView  Intent="Settings">
                             <TableRoot>
                                 <TableSection>
@@ -32,6 +32,9 @@
                                 <TableSection>
                                     <SwitchCell Text="Show home animation" On="{Binding IsHomepageAnimation}" />
                                 </TableSection>
+                                <TableSection>
+                                    <SwitchCell Text="Start on Download" On="{Binding IsStartFromDownloadPage}" />
+                                </TableSection>
                             </TableRoot>
                         </TableView>
                     </VerticalStackLayout>
@@ -39,19 +42,19 @@
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
                     <VerticalStackLayout>
-                        <Label Text="Check for updates" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <Label Text="Check for updates" Style="{StaticResource SubHeaderLabelStyle}" />
                         <VerticalStackLayout Spacing="10">
 
                             <Label HorizontalOptions="CenterAndExpand" Text="{Binding CheckUpdateText}" Style="{StaticResource BodyLabelStyle}" />
-                            <ActivityIndicator Color="Red" IsRunning="{Binding IsChecking}" />
+                            <ActivityIndicator Color="#fe0039" IsRunning="{Binding IsChecking}" />
                             <Button ImageSource="download_icon.svg" WidthRequest="200" HeightRequest="35" Text="Download new version" IsVisible="{Binding IsDownloadButtonVisible}" Style="{StaticResource DarkRedButton}"  Command="{Binding OpenDownloadUrlCommand}"/>
-                            <Button ImageSource="check_update_icon.svg" HeightRequest="35" WidthRequest="200" Text="Check For Updates" Style="{StaticResource DarkRedButton}" Command="{Binding CheckForUpdatesCommand}" />
+                            <Button ImageSource="check_update_icon.svg" HeightRequest="35" WidthRequest="200" Text="Check For Updates" Style="{StaticResource RedButton}" Command="{Binding CheckForUpdatesCommand}" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     
-                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+                    <BoxView IsVisible="False" HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
-                    <VerticalStackLayout>
+                    <VerticalStackLayout IsVisible="False">
                         <Label Text="Storage Info" Style="{StaticResource CardHeaderLabelStyle}" />
                         <VerticalStackLayout Spacing="10">
                             <Label HorizontalTextAlignment="Center" Text="{Binding InternalStorageInfo}" Style="{StaticResource BodyLabelStyle}" />
@@ -60,7 +63,7 @@
                             <Label HorizontalTextAlignment="Center" Text="{Binding ExternalStorageInfo}" Style="{StaticResource BodyLabelStyle}" />
                             <ProgressBar Progress="{Binding ExternalStorageProgress}" ProgressColor="Cyan" />
 
-                            <Button Text="Refresh" ImageSource="check_update_icon.svg" WidthRequest="200" HeightRequest="35" Command="{Binding UpdateStorageInfoCommand}" Style="{StaticResource DarkRedButton}"/>
+                            <Button Text="Refresh" ImageSource="check_update_icon.svg" WidthRequest="200" HeightRequest="35"  Style="{StaticResource RedButton}"/>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
 

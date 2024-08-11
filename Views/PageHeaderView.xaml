@@ -10,7 +10,7 @@
                 <Image Source="transparent_icon.svg" WidthRequest="80" Aspect="AspectFit" />
                 
                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="YT Downloader" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End" />
+                    <Label Text="YT Downloader" TextColor="#fe0039" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End" />
                     <Label Text="{Binding VersionText}" HorizontalTextAlignment="Center" FontSize="14" VerticalOptions="End" TextColor="Gray" />
                 </VerticalStackLayout>
             

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using YTDownloaderMAUI.Pages;
+using YTDownloaderMAUI.Services;
 using YTDownloaderMAUI.Views;
 
 namespace YTDownloaderMAUI
@@ -11,8 +12,6 @@ namespace YTDownloaderMAUI
             InitializeComponent();
             Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
         }
-
-
 
         private async void OnSettingsButtonClicked(object sender, EventArgs e)
         {

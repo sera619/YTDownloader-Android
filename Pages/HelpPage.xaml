@@ -9,28 +9,22 @@
         <VerticalStackLayout Padding="20,5,20,5" Spacing="5">
             <views:PageHeaderView HeaderText="Here you will find some help if you have problems."/>
 
-            <Border Margin="0,10,0,0" Padding="20" Stroke="Red" BackgroundColor="#222" StrokeThickness="1">
+            <Border Margin="0,10,0,0" Padding="20" Stroke="#fe0039" BackgroundColor="#222" StrokeThickness="1">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
 
                 <!-- Valid URL section -->
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="How get a valid youtube url?" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="How get a valid youtube url?" Style="{StaticResource SubHeaderLabelStyle}" />
                     <Label Text="YT Downloader has strict url input guidelines to ensure the security of the app. With the update v2.9.8, the YT Downloader now also supports the use of so-called 'shortend' urls. These are urls that have been shortened and only contain important parameters. "
                             Style="{StaticResource BodyLabelStyle}" />
 
-                    <Label  Style="{StaticResource BodyLabelStyle}" >
-                        <Label.Text xml:space="preserve">
-As example a normal youtube video URL:
-                            
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
-
-And a shortended URL from the same video:
-                            
-https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8
-                        </Label.Text> 
-                    </Label>
+                    <Label Style="{StaticResource BodyLabelStyle}" Text="As example a normal youtube video URL:"/>
+                    <Label Style="{StaticResource BodyLabelStyle}" Text="https://www.youtube.com/watch?v=dQw4w9WgXcQ" FontSize="12" TextColor="#fe0039"/>
+                    <Label Style="{StaticResource BodyLabelStyle}" Text="And a shortended URL from the same video:"/>
+                    <Label Style="{StaticResource BodyLabelStyle}" Text="https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8"  FontSize="12" TextColor="#fe0039"/>
+                                              
                     <Label Text="In the android Youtube app you can simply select the option 'copy link/url' via the 'share' button and use it conveniently in the app."
                             Style="{StaticResource BodyLabelStyle}" />
                     <Label Text="The YT Downloader software takes care of converting and checking the URL in the background to make it available for download." Style="{StaticResource BodyLabelStyle}" />
@@ -39,15 +33,15 @@ https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8
 
                     <!-- Settings section -->
                     <VerticalStackLayout Spacing="5">
-                        <Label Text="Settings" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <Label Text="Settings" Style="{StaticResource SubHeaderLabelStyle}" />
                         <Label Text="YT Downloader offers a variety of ways to customize the software. To open the settings click the settings icon at the top right of the screen." Style="{StaticResource BodyLabelStyle}" />
-                        <Label Text="From visual properties to update settings. It is also possible to check for updates manually. You can also check if you have enough memory left to download more videos." Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="From visual properties to update settings. It is also possible to check for updates manually." Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="To use the settings, follow the instructions. More options will be enabled in future updates. Please note that the app is in an early stage of development." Style="{StaticResource BodyLabelStyle}" />
                     </VerticalStackLayout>
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
                     <!-- Start download section -->
-                    <Label Text="Start download" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="Start download" Style="{StaticResource SubHeaderLabelStyle}" />
                     <Label Text="To add future videos to the download waiting list you need to follow these steps:" Style="{StaticResource BodyLabelStyle}" />
                     <VerticalStackLayout x:Name="UsageHelpLayout" Margin="65,0,0,0" Spacing="5">
                     </VerticalStackLayout>
@@ -55,7 +49,7 @@ https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8
 
                     <!-- Videomode section -->
                     <VerticalStackLayout x:Name="VideoModeHelpLayout" Spacing="5">
-                        <Label Text="Switch single video/playlist Mode" Style="{StaticResource CardHeaderLabelStyle}" />
+                        <Label Text="Switch single video/playlist Mode" Style="{StaticResource SubHeaderLabelStyle}" />
                         <Label Text="YT Downloader supports adding single videos as well as playlists. The 'Single Video' mode is active by default. To change this, click on the button next to the mode display. The mode is set to 'Playlist' when the switch is red and thus activated." Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="Please note that when the 'Playlist' mode is active the app only accepts playlist URL's that come from a Youtube playlist."
                             Style="{StaticResource BodyLabelStyle}" />
@@ -63,10 +57,10 @@ https://youtu.be/dQw4w9WgXcQ?si=lguxIuS7660FUcm8
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
                     <!-- Still problems section -->
-                    <Label Text="Still have problems?" Style="{StaticResource CardHeaderLabelStyle}" />
+                    <Label Text="Still have problems?" Style="{StaticResource SubHeaderLabelStyle}" />
                     <Label Text="If you need further help, have suggestions or other problems please go to the about page and under 'contact' you will find ways to get in touch with us."
                         Style="{StaticResource BodyLabelStyle}" />
-                    <Button ImageSource="info_icon.svg" HeightRequest="35" WidthRequest="150" x:Name="GoToAboutButton" Clicked="GoToAboutButton_Clicked" Style="{StaticResource DarkRedButton}" Text="Go to About" />
+                    <Button ImageSource="info_icon.svg" HeightRequest="35" WidthRequest="150" x:Name="GoToAboutButton" Clicked="GoToAboutButton_Clicked" Style="{StaticResource RedButton}" Text="Go to About" />
 
                 </VerticalStackLayout>
 
