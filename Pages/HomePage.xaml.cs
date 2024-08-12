@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using YTDownloaderMAUI.Services;
+using YTDownloaderMAUI.Src;
 using YTDownloaderMAUI.Views;
 
 namespace YTDownloaderMAUI.Pages;
@@ -26,6 +27,7 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        HomepageIcon.HeightRequest = Utils.GetDeviceWidth() / 2;
         if (SettingsService.GetCheckForHomepageAnimation())
         {
             StartIntroAnimation();
