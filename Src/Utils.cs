@@ -90,6 +90,13 @@ namespace YTDownloaderMAUI.Src
             return string.Empty;
         }
 
+        public static double GetDeviceWidth()
+        {
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            double width = mainDisplayInfo.Width / mainDisplayInfo.Density;
+            return width;
+        }
+
         public static string GetDownloadsPath()
         {
             string downloadsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyMusic);
