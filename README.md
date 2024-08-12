@@ -76,6 +76,7 @@ This application is for personal use only. Please respect YouTube's terms of ser
 ### Version 3.2.2 (Release Version)
 - implement dynamic app logo sizing
 - update colortheme YTPopup
+- hotfix button display on downloadpage
 
 
 For older releases click the tab below.
