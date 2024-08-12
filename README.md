@@ -8,8 +8,9 @@ YT Downloader is a cross-platform application built with .NET MAUI that allows u
 > **This software is at an early stage of development. The software receives regular updates, currently almost daily. I, S3R43o3, am currently the sole developer, so please be patient. 
 > Furthermore, I am far from being a professional with the MAUI framework. 
 > For this reason I apologize for any bugs and errors that may occur. 
-> Please contact me if you recognize any bugs or errors.
->If you are a developer and would like to help me with this project, please see the Contributing section below.**
+> Please contact me if you recognize any bugs or errors.**
+>
+> **If you are a developer and would like to help me with this project, please see the Contributing section below.**
 
 ## ✨ Features
 
@@ -72,24 +73,28 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## 📝 Release Notes
 
+### Version 3.2.2 (Release Version)
+- implement dynamic app logo sizing
+- update colortheme YTPopup
 
-### Version 3.2.1 (Release Version)
-- update Colortheme 
-- adjust headersize help
-- adjust downloadpage layout
-- add user option to start on downloadpage
- 
 
 For older releases click the tab below.
 
 <details>
 <summary>Older releases</summary>
 
+
+
+### Version 3.2.1 (Release Version)
+- update Colortheme 
+- adjust headersize help
+- adjust downloadpage layout
+- add user option to start on downloadpage
+
+
 ### Version 3.2.0 (Release Version)
 - adjust the introanimation
 - adding copyright
-
-
 
 ### Version 3.1.9 (Release Version)
 - implementing feature to open download directory
