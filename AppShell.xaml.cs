@@ -16,7 +16,7 @@ namespace YTDownloaderMAUI
         private async void OnSettingsButtonClicked(object sender, EventArgs e)
         {
 
-            await Shell.Current.GoToAsync("//DownloadPage/SettingsPage");
+            await Shell.Current.GoToAsync("SettingsPage");
         }
 
         private async void AppMenuExitButton_Clicked(object sender, EventArgs e)

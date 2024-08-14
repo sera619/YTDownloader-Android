@@ -73,17 +73,21 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## 📝 Release Notes
 
-### Version 3.2.2 (Release Version)
-- implement dynamic app logo sizing
-- update colortheme YTPopup
-- hotfix button display on downloadpage
-
+### Version 3.2.4 (Release Version)
+- setup a other layout for downloadpage
+- convert listview to collectionview
+- some visual hotfixes and adjusts
 
 For older releases click the tab below.
 
 <details>
 <summary>Older releases</summary>
 
+
+### Version 3.2.2 (Release Version)
+- implement dynamic app logo sizing
+- update colortheme YTPopup
+- hotfix button display on downloadpage
 
 
 ### Version 3.2.1 (Release Version)

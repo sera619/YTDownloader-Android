@@ -27,7 +27,7 @@
 
     <TabBar>
         <ShellContent Title="Home" Route="HomePage" Icon="home_icon.svg" ContentTemplate="{DataTemplate pages:HomePage}" />
-        <ShellContent Title="Download" Route="DownloadPage" Icon="download_icon.svg" ContentTemplate="{DataTemplate pages:DownloadPage}" />
+        <ShellContent Title="Download" Route="DownloadPage" Icon="download_icon.svg" ContentTemplate="{DataTemplate pages:NewDownloadPage}" />
         <ShellContent Title="About" Route="AboutPage" Icon="info_icon.svg" ContentTemplate="{DataTemplate pages:AboutPage}" />
         <ShellContent Title="Help" Route="HelpPage" Icon="help_icon.svg" ContentTemplate="{DataTemplate pages:HelpPage}" />
     </TabBar>

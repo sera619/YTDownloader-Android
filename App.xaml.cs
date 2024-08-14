@@ -17,7 +17,6 @@ namespace YTDownloaderMAUI
             else
             {
                 MainPage = new AppShell();
-
             }
         }
 

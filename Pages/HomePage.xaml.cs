@@ -15,6 +15,7 @@ public partial class HomePage : ContentPage
         _notificationService = new LocalNotificationService();
         CheckVersions();
 
+        HomepageIcon.HeightRequest = Utils.GetDeviceWidth() / 2;
 
 #if ANDROID
         //RequestStoragePermission();
@@ -27,7 +28,6 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        HomepageIcon.HeightRequest = Utils.GetDeviceWidth() / 2;
         if (SettingsService.GetCheckForHomepageAnimation())
         {
             StartIntroAnimation();
@@ -45,7 +45,7 @@ public partial class HomePage : ContentPage
           HomepageIcon.ScaleTo(1.3, 1250)
         );
         await HomepageIcon.ScaleTo(1, 1000);
-        await HomepageInfoLayout.FadeTo(1, 2000);
+        await HomepageInfoLayout.FadeTo(1, 1750);
         HomepageIcon.Rotation = 0;
     }
 
@@ -54,7 +54,6 @@ public partial class HomePage : ContentPage
     {
         if (SettingsService.GetCheckForUpdatesOnStart() == true)
         {
-
             bool isUpdateAvailable = await VersionService.CheckVersionAsync();
             if (isUpdateAvailable)
             {
@@ -73,7 +72,7 @@ public partial class HomePage : ContentPage
     private async void ShowUpdatePopup()
     {
         string? newVersionName = await VersionService.GetLastestVersionAsync();
-        var popup = new YTPopup("New Update!", $"A new update '{newVersionName}' is availble.\nYour current version is 'v{VersionTracking.CurrentVersion}'!\n\nDo you want to download it?", "Yes", "No");
+        var popup = new YTPopup("New Update!", $"A new update '{newVersionName}' is availble!\n\nYour current version is 'v{VersionTracking.CurrentVersion}'!\n\nDo you want to download it?", "Yes", "No");
         var result = await this.ShowPopupAsync(popup);
         if (result is bool boolResult)
         {

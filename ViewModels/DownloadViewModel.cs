@@ -22,6 +22,29 @@ namespace YTDownloaderMAUI.ViewModels
         public ICommand OpenFileLocationCommand { get; }
 
         private CancellationTokenSource? _cancellationTokenSource;
+
+        private int _videoAmount;
+        public int VideoAmount
+        {
+            get => _videoAmount;
+            set
+            {
+                _videoAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _videoAmountText = "Download Queue";
+        public string VideoAmountText
+        {
+            get => _videoAmountText;
+            set
+            {
+                _videoAmountText = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _canCancel = false;
         public bool CanCancel
         {
@@ -103,8 +126,22 @@ namespace YTDownloaderMAUI.ViewModels
             ClearSingleCommand = new Command(async () => await ClearSingle());
             CancelDownloadCommand = new Command(CancelDownload, () => CanCancel);
             OpenFileLocationCommand = new Command(OpenFileLocation);
+            VideoEntries.CollectionChanged += (s, e) => UpdateVideoAmount();
 
             StatusMessage = _defaultStatusText;
+        }
+
+        private void UpdateVideoAmount()
+        {
+            VideoAmount = VideoEntries.Count;
+            if(VideoEntries.Count > 0)
+            {
+                VideoAmountText = $"{VideoAmount} Video(s) in download queue";
+            }
+            else
+            {
+                VideoAmountText = "Download Queue";
+            }
         }
 
         private void CancelDownload()
