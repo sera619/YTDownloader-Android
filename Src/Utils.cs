@@ -4,7 +4,7 @@ namespace YTDownloaderMAUI.Src
 {
     internal class Utils
     {
-        public static string TruncateText(string text, int maxLength = 30)
+        public static string TruncateText(string text, int maxLength = 28)
         {
             if (text.Length > maxLength)
             {
@@ -95,6 +95,13 @@ namespace YTDownloaderMAUI.Src
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             double width = mainDisplayInfo.Width / mainDisplayInfo.Density;
             return width;
+        }
+
+        public static double GetDeviceHeight() 
+        {
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            double height = mainDisplayInfo.Height / mainDisplayInfo.Density;
+            return height;
         }
 
         public static string GetDownloadsPath()
