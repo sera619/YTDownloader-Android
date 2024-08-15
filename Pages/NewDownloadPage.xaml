@@ -12,7 +12,7 @@
         <viewModels:DownloadViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20,5,20,5" MaximumWidthRequest="700">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20,5,20,15" MaximumWidthRequest="700">
         <views:PageHeaderView Grid.Row="0" HeaderText="Download youtube video as audio."/>
 
         <Frame Grid.Row="1" BorderColor="#fe0039" Padding="10" CornerRadius="10" IsClippedToBounds="True" BackgroundColor="#222">
@@ -150,7 +150,7 @@
                                     <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe2c8;" Color="WhiteSmoke" Size="20" />
                                 </Button.ImageSource>
                             </Button>
-                            <Button Text="Dummy" IsVisible="True" IsEnabled="True" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
+                            <Button Text="Dummy" IsVisible="Collapse" IsEnabled="False" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="End">

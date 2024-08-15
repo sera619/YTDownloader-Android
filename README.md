@@ -73,16 +73,25 @@ This application is for personal use only. Please respect YouTube's terms of ser
 
 ## 📝 Release Notes
 
-### Version 3.2.4 (Release Version)
-- setup a other layout for downloadpage
-- convert listview to collectionview
-- some visual hotfixes and adjusts
+### Version 3.2.6 (Release Version)
+- update downloadpage layout issue for smaller displays
+- enable force portrait mode
+- remove not used code
+- setup displaying video thumbnails on queue entries
+- add more appinformation on aboutpage
+- add version number on homepage (implement dynamic generation)
+- adjust layouts about- and helppage
+- refactoring and simplify code
 
 For older releases click the tab below.
 
 <details>
 <summary>Older releases</summary>
 
+### Version 3.2.4 (Release Version)
+- setup a other layout for downloadpage
+- convert listview to collectionview
+- some visual hotfixes and adjusts
 
 ### Version 3.2.2 (Release Version)
 - implement dynamic app logo sizing
