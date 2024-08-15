@@ -11,6 +11,7 @@ namespace YTDownloaderMAUI
         {
             InitializeComponent();
             Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
+            Routing.RegisterRoute("TestPage", typeof(TestPage));
         }
 
         private async void OnSettingsButtonClicked(object sender, EventArgs e)

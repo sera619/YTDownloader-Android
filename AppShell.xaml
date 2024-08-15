@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:YTDownloaderMAUI.Pages"
     xmlns:local="clr-namespace:YTDownloaderMAUI"
-    Title="YT Downloader Android"
+    Title="YT Downloader"
     Style="{StaticResource BlackTabbarStyle}" MaximumHeightRequest="40"
     Shell.ForegroundColor="#fe0039"
     >
 
-
+    
+    
     <Shell.ToolbarItems>
         <ToolbarItem  Priority="1" Clicked="OnSettingsButtonClicked" Order="Default">
             <ToolbarItem.IconImageSource>
