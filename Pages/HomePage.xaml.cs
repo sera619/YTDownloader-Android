@@ -12,10 +12,10 @@ public partial class HomePage : ContentPage
     public HomePage()
     {
         InitializeComponent();
+        HomepageIcon.HeightRequest = Utils.GetDeviceWidth() / 2;
         _notificationService = new LocalNotificationService();
         CheckVersions();
 
-        HomepageIcon.HeightRequest = Utils.GetDeviceWidth() / 2;
 
 #if ANDROID
         //RequestStoragePermission();
@@ -72,7 +72,7 @@ public partial class HomePage : ContentPage
     private async void ShowUpdatePopup()
     {
         string? newVersionName = await VersionService.GetLastestVersionAsync();
-        var popup = new YTPopup("New Update!", $"A new update '{newVersionName}' is availble!\n\nYour current version is 'v{VersionTracking.CurrentVersion}'!\n\nDo you want to download it?", "Yes", "No");
+        var popup = new YTPopup("New Update!", $"A new update '{newVersionName}' is available!\n\nYour current version is 'v{VersionTracking.CurrentVersion}'!\n\nDo you want to download it?", "Yes", "No");
         var result = await this.ShowPopupAsync(popup);
         if (result is bool boolResult)
         {
@@ -83,18 +83,6 @@ public partial class HomePage : ContentPage
             }
         }
 
-    }
-
-    private async void NotifyButton_Clicked(object sender, EventArgs e)
-    {
-        var popup = new YTPopup("Popup Title", "This is a message", "Confirm", "Decline");
-        var result = await this.ShowPopupAsync(popup);
-        if (result is bool boolResult)
-        {
-            if (boolResult)
-            {
-            }
-        }
     }
 
 #endif
