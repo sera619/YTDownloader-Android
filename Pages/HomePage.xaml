@@ -30,7 +30,7 @@
                 <Label FontSize="Body" Margin="10, 0, 10, 15" Padding="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="YT Downloader is a powerful, user-friendly application designed to convert and download audio content from YouTube videos and playlists."  SemanticProperties.HeadingLevel="Level2" SemanticProperties.Description="Welcome to YT Downloader." />
 
                 <Button Text="Start" TextColor="WhiteSmoke" VerticalOptions="Center" Padding="10" FontSize="14" Command="{Binding StartUpCommand}" ImageSource="start_icon.svg" HeightRequest="40" WidthRequest="110" Style="{StaticResource OutlinedRedButton}" />
-                <Label TextColor="#777" Text="App design &amp; development © 2024 S3R43o3" Margin="0,20,0,0" FontAttributes="Italic" FontFamily="OpenSansSemibold" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Label TextColor="#777" Text="{Binding SignatureText}" Margin="0,20,0,0" FontAttributes="Italic" FontFamily="OpenSansSemibold" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
