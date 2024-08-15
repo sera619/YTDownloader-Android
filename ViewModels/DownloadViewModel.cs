@@ -122,6 +122,7 @@ namespace YTDownloaderMAUI.ViewModels
             }
         }
 
+
         public DownloadViewModel()
         {
             VideoEntries = new ObservableCollection<VideoEntry>();
@@ -312,7 +313,8 @@ namespace YTDownloaderMAUI.ViewModels
                     {
                         URL = video.Url,
                         Title = Utils.TruncateText(video.Title),
-                        Duration = video.Duration?.ToString() ?? "Unknown"
+                        Duration = video.Duration?.ToString() ?? "Unknown",
+                        ThumbnailUrl = video.Thumbnails.OrderByDescending(t => t.Resolution.Area).FirstOrDefault()?.Url ?? "music_icon.svg"
                     };
                     MainThread.BeginInvokeOnMainThread(() => VideoEntries.Add(newEntry));
                 }
@@ -361,10 +363,11 @@ namespace YTDownloaderMAUI.ViewModels
             {
                 URL = video.Url,
                 Title = Utils.TruncateText(video.Title),
-                Duration = video.Duration?.ToString() ?? "Unknown"
+                Duration = video.Duration?.ToString() ?? "Unknown",
+                ThumbnailUrl = video.Thumbnails.OrderByDescending(t => t.Resolution.Area).FirstOrDefault()?.Url ?? "music_icon.svg"
             };
 
-            VideoEntries.Add(videoEntry);
+            MainThread.BeginInvokeOnMainThread(() => VideoEntries.Add(videoEntry));
             IsBusy = false;
             ShowButtons = true;
 
