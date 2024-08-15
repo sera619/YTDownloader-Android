@@ -14,9 +14,6 @@ public partial class NewDownloadPage : ContentPage
     public NewDownloadPage()
 	{
 		InitializeComponent();
-        var h = Utils.GetDeviceHeight() / 3;
-        var hHalf = h * .2;
-		VideoEntryCollectionView.HeightRequest = h+hHalf;
     }
 
     private async void PasteUrlButton_Clicked(object sender, EventArgs e)

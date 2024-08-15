@@ -58,7 +58,13 @@ namespace YTDownloaderMAUI.ViewModels
 
         private static readonly string[] _dummyURLS = {
             "https://www.youtube.com/watch?v=QWA-fWBQh0A",
-            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "https://youtu.be/n0tL59tM3s0?si=ZELvkKkdN6aoqwGH",
+            "https://www.youtube.com/watch?v=q15qLdQ9bNM",
+            "https://youtu.be/GgZj23G9wrI?si=NvB-XLY2qbOEeqzz",
+            "https://youtu.be/t8aQWPH8gxo?si=dcyt0aPRRzVlMZSO",
+            "https://youtu.be/6A-flxZH3v8?si=DNJO_fNmoiAPtZvj",
+            "https://youtu.be/1vGO-4gSblE?si=LVAfse0ZtMaFbNjp"
             // Additional dummy URLs
         };
 

@@ -12,168 +12,174 @@
         <viewModels:DownloadViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20,5,20,5" Spacing="5">
-            <views:PageHeaderView HeaderText="Download youtube video as audio."/>
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20,5,20,5" MaximumWidthRequest="700">
+        <views:PageHeaderView Grid.Row="0" HeaderText="Download youtube video as audio."/>
 
-            <Frame BorderColor="#fe0039" Padding="10" CornerRadius="10" IsClippedToBounds="True" BackgroundColor="#222">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+        <Frame Grid.Row="1" BorderColor="#fe0039" Padding="10" CornerRadius="10" IsClippedToBounds="True" BackgroundColor="#222">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                    <VerticalStackLayout Grid.Row="0">
 
-                        <CollectionView x:Name="VideoEntryCollectionView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding VideoEntries, Mode=TwoWay}" >
-                            <CollectionView.HeaderTemplate>
-                                <DataTemplate>
-                                    <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Start" TextColor="#fe0039" Margin="0,0,0,10" Padding="0" Text="{Binding Path=BindingContext.VideoAmountText,  Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
-                                           FontSize="Medium"
-                                           />
-                                </DataTemplate>
-                            </CollectionView.HeaderTemplate>
+                <CollectionView x:Name="VideoEntryCollectionView" 
+                                        VerticalOptions="FillAndExpand"
+                                        BackgroundColor="#444"
+                                        ItemsSource="{Binding VideoEntries, Mode=TwoWay}" >
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout BackgroundColor="#222" VerticalOptions="Start" >
+                                <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" 
+                                   TextColor="#fe0039"  
+                                   Padding="0" 
+                                   Text="{Binding Path=BindingContext.VideoAmountText,  Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                   FontSize="Medium"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
 
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame BorderColor="#fe0039" CornerRadius="10" Padding="5" Margin="5" IsClippedToBounds="True" BackgroundColor="#333">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#fe0039" CornerRadius="10" Padding="5" Margin="5" IsClippedToBounds="True" BackgroundColor="#333">
 
-                                        <Grid ColumnSpacing="5" Margin="2,1" RowSpacing="5" >
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                <Grid ColumnSpacing="5" Margin="2,1" RowSpacing="5" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                            <!-- Thumbnail Image -->
-                                            <Image Grid.RowSpan="2"  Grid.Column="0" Source="music_icon.svg" WidthRequest="35" Margin="5,0,15,0" HeightRequest="55" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <!-- Thumbnail Image -->
+                                    <Image Grid.RowSpan="2"  Grid.Column="0" Source="music_icon.svg" WidthRequest="35" Margin="5,0,15,0" HeightRequest="55" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-                                            <!-- Video Title -->
-                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="14" LineBreakMode="TailTruncation"  FontAttributes="Bold" VerticalOptions="Center" />
+                                    <!-- Video Title -->
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="14" LineBreakMode="TailTruncation"  FontAttributes="Bold" VerticalOptions="Center" />
 
-                                            <!-- Video Duration -->
-                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Duration}" FontSize="12" FontAttributes="Italic" VerticalOptions="Center" />
+                                    <!-- Video Duration -->
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Duration}" FontSize="12" FontAttributes="Italic" VerticalOptions="Center" />
 
-                                            <!-- Delete Button
+                                    <!-- Delete Button
                             <ImageButton IsEnabled="{Binding Path=BindingContext.ShowButtons}" Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type ListView}}}"
                                  CommandParameter="{Binding .}"
                                  Grid.RowSpan="2" Grid.Column="2" Source="delete_icon.svg" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" Style="{StaticResource DarkRedImageButton }" CornerRadius="20" VerticalOptions="Center" />
                             -->
-                                            <ImageButton Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    <ImageButton Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
                                          CommandParameter="{Binding .}"
                                          Grid.RowSpan="2" Grid.Column="2" Source="delete_icon.svg" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" 
                                          Style="{StaticResource DarkRedImageButton }" CornerRadius="20" VerticalOptions="Center" Margin="3,0,5,0" />
 
-                                        </Grid>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="No videos in queue!" 
+                                   FontAttributes="Bold" 
+                                   TextColor="{StaticResource Gray100}" 
+                                   HorizontalTextAlignment="Center" 
+                                   FontSize="18" />
+                            <Label Text="Add a video below." 
+                                   HorizontalTextAlignment="Center" 
+                                   VerticalOptions="Center" 
+                                   FontAttributes="Italic" 
+                                   FontSize="14" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
 
-                            <CollectionView.EmptyView>
-                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                                    <Label HorizontalOptions="Fill" VerticalOptions="Center" FontAttributes="Bold" TextColor="{StaticResource Gray100}" HorizontalTextAlignment="Center" FontSize="18" Text="No videos in queue!" />
-                                    <Label Text="Add a video below." HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Italic" FontSize="14" />
+                <VerticalStackLayout Grid.Row="1" >
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#fe0039" HorizontalOptions="FillAndExpand" />
 
-                                </StackLayout>
-                            </CollectionView.EmptyView>
-                        </CollectionView>
-
-                        <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#fe0039" HorizontalOptions="FillAndExpand" />
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Grid.Row="1" >
-
-                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                            <ActivityIndicator Color="#fe0039" HeightRequest="40" IsEnabled="True" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
-                            <Label Text="{Binding StatusMessage}" LineBreakMode="WordWrap" FontSize="15" MinimumHeightRequest="40" 
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <ActivityIndicator Color="#fe0039" HeightRequest="40" IsEnabled="True" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+                        <Label Text="{Binding StatusMessage}" LineBreakMode="WordWrap" FontSize="15" MinimumHeightRequest="40" 
                                VerticalOptions="Center"  HorizontalOptions="Center" 
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </HorizontalStackLayout>
+                    <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#fe0039" HorizontalOptions="FillAndExpand" />
+                    
+                    <Grid>
+                        <Label Text="Videomode:" TextColor="#fe0039" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                        <HorizontalStackLayout  Spacing="5" HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding VideoModeText}" FontSize="15" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                            <Switch VerticalOptions="Center" IsEnabled="{Binding ShowButtons}" HorizontalOptions="End"  IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" OnColor="#fe0039" />
                         </HorizontalStackLayout>
+                    </Grid>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
 
-                            <Entry Grid.Column="0" x:Name="UrlEntry" Placeholder="{Binding UrlPlaceholderText}" ClearButtonVisibility="WhileEditing" Text="{Binding SingleUrlEntryText}" />
-                            <Button x:Name="PasteUrlButton" Grid.Column="1" HorizontalOptions="End" Padding="0" FontSize="0" Clicked="PasteUrlButton_Clicked" Style="{StaticResource OutlinedRedButton}" WidthRequest="35" HeightRequest="35"
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Grid.Column="0" x:Name="UrlEntry" Placeholder="{Binding UrlPlaceholderText}" ClearButtonVisibility="WhileEditing" Text="{Binding SingleUrlEntryText}" />
+                        <Button x:Name="PasteUrlButton" Grid.Column="1" HorizontalOptions="End" Padding="0" FontSize="0" Clicked="PasteUrlButton_Clicked" Style="{StaticResource OutlinedRedButton}" WidthRequest="35" HeightRequest="35"
                                 IsEnabled="{Binding ShowButtons}"
                                 >
-                                <Button.ImageSource>
-                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe14f;" Color="WhiteSmoke" Size="20" />
-                                </Button.ImageSource>
-                            </Button>
-                        </Grid>
+                            <Button.ImageSource>
+                                <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe14f;" Color="WhiteSmoke" Size="20" />
+                            </Button.ImageSource>
+                        </Button>
+                    </Grid>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <HorizontalStackLayout Spacing="5" Grid.Column="1" HorizontalOptions="End">
-                                <Button Text="Reset" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}" HeightRequest="35"
+
+                        <HorizontalStackLayout Spacing="5"  HorizontalOptions="End">
+                            <Button Text="Reset" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}" HeightRequest="35"
                                     Command="{Binding ClearSingleCommand}" IsEnabled="{Binding ShowButtons}"
                                     >
-                                    <Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf053;" Color="WhiteSmoke" Size="20" />
-                                    </Button.ImageSource>
-                                </Button>
-                                <Button Text="Add" x:Name="AddVideoToListButton" Padding="10,5" FontSize="14" IsEnabled="{Binding ShowButtons}" Style="{StaticResource OutlinedRedButton}" TextColor="WhiteSmoke" HeightRequest="35"
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf053;" Color="WhiteSmoke" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                            <Button Text="Add" x:Name="AddVideoToListButton" Padding="10,5" FontSize="14" IsEnabled="{Binding ShowButtons}" Style="{StaticResource OutlinedRedButton}" TextColor="WhiteSmoke" HeightRequest="35"
                                     Command="{Binding AddFileCommand}" CommandParameter="{Binding Text, Source={x:Reference UrlEntry}}"
                                     Clicked="AddVideoToListButton_Clicked"
                                     >
-                                    <Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf23a;" Color="WhiteSmoke" Size="20" />
-                                    </Button.ImageSource>
-                                </Button>
-                            </HorizontalStackLayout>
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf23a;" Color="WhiteSmoke" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                        </HorizontalStackLayout>
 
-                            <HorizontalStackLayout Grid.Column="0" Spacing="5" HorizontalOptions="Start">
-                                <Switch IsEnabled="{Binding ShowButtons}" IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" OnColor="#fe0039" />
-                                <Label Text="{Binding VideoModeText}" FontSize="15" VerticalOptions="Center" />
-                            </HorizontalStackLayout>
-                        </Grid>
 
-                        <Grid Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <HorizontalStackLayout Spacing="5" HorizontalOptions="Start">
-                                <Button IsEnabled="{Binding ShowButtons}" Command="{Binding OpenFileLocationCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35">
-                                    <Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe2c8;" Color="WhiteSmoke" Size="20" />
-                                    </Button.ImageSource>
-                                </Button>
-                                <Button Text="Dummy" IsVisible="False" IsEnabled="{Binding ShowButtons}" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
-                            </HorizontalStackLayout>
 
-                            <HorizontalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="End">
-                                <Button Text="Cancel" IsVisible="{Binding CanCancel}" IsEnabled="{Binding CanCancel}" Command="{Binding CancelDownloadCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35">
-                                    <Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe14b;" Color="WhiteSmoke" Size="20" />
-                                    </Button.ImageSource>
-                                </Button>
-                                <Button Text="Download" IsEnabled="{Binding ShowButtons}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <HorizontalStackLayout Spacing="5" HorizontalOptions="Start">
+                            <Button IsEnabled="{Binding ShowButtons}" Command="{Binding OpenFileLocationCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe2c8;" Color="WhiteSmoke" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                            <Button Text="Dummy" IsVisible="Collapse" IsEnabled="False" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="End">
+                            <Button Text="Cancel" IsVisible="{Binding CanCancel}" IsEnabled="{Binding CanCancel}" Command="{Binding CancelDownloadCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe14b;" Color="WhiteSmoke" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                            <Button Text="Download" IsEnabled="{Binding ShowButtons}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"
                                 Command="{Binding DownloadAllEntriesCommand}"
                                 >
-                                    <Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf090;" Color="WhiteSmoke" Size="20" />
-                                    </Button.ImageSource>
-                                </Button>
-                            </HorizontalStackLayout>
-                        </Grid>
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xf090;" Color="WhiteSmoke" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                        </HorizontalStackLayout>
+                    </Grid>
 
-                    </VerticalStackLayout>
+                </VerticalStackLayout>
 
-                </Grid>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </Frame>
+
+    </Grid>
 </ContentPage>
