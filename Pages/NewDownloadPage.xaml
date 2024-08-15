@@ -49,7 +49,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Thumbnail Image -->
-                                    <Image Grid.RowSpan="2"  Grid.Column="0" Source="music_icon.svg" WidthRequest="35" Margin="5,0,15,0" HeightRequest="55" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Image Grid.RowSpan="2"  Grid.Column="0" Source="{Binding ThumbnailUrl}" WidthRequest="35" Margin="5,0,15,0" HeightRequest="55" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
 
                                     <!-- Video Title -->
                                     <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="14" LineBreakMode="TailTruncation"  FontAttributes="Bold" VerticalOptions="Center" />
@@ -84,7 +84,7 @@
                     </CollectionView.EmptyView>
                 </CollectionView>
 
-                <VerticalStackLayout Grid.Row="1" >
+                <VerticalStackLayout Grid.Row="1" Spacing="2" >
 
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#fe0039" HorizontalOptions="FillAndExpand" />
                     <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
@@ -96,7 +96,10 @@
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#fe0039" HorizontalOptions="FillAndExpand" />
 
                     <Grid>
-                        <Label Text="Videomode:" TextColor="#fe0039" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                        <StackLayout VerticalOptions="Center" Margin="5,0,0,0">
+                            
+                            <Label Text="Videomode:" TextColor="#fe0039" FontSize="16" VerticalTextAlignment="Center"  />
+                        </StackLayout>
                         <HorizontalStackLayout  Spacing="5" HorizontalOptions="EndAndExpand">
                             <Label Text="{Binding VideoModeText}" FontSize="15" VerticalOptions="Center" HorizontalTextAlignment="End"/>
                             <Switch VerticalOptions="Center" IsEnabled="{Binding ShowButtons}" HorizontalOptions="End"  IsToggled="{Binding IsPlaylistDownload, Mode=TwoWay}" OnColor="#fe0039" />
@@ -115,7 +118,7 @@
                     </Grid>
 
 
-                    <HorizontalStackLayout Spacing="5"  HorizontalOptions="End">
+                    <HorizontalStackLayout Spacing="5"  HorizontalOptions="Start">
                         <Button Text="Reset" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}" HeightRequest="35"
                                     Command="{Binding ClearSingleCommand}" IsEnabled="{Binding ShowButtons}"
                                     >
@@ -140,7 +143,7 @@
                                     <FontImageSource FontFamily="MaterialIcons-Regular" Glyph="&#xe2c8;" Color="WhiteSmoke" Size="20" />
                                 </Button.ImageSource>
                             </Button>
-                            <Button Text="Dummy" IsVisible="Collapse" IsEnabled="False" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
+                            <Button Text="Dummy" IsVisible="True" IsEnabled="True" Command="{Binding AddDummyCommand}" Padding="10,5" TextColor="WhiteSmoke" Margin="0" FontSize="14" Style="{StaticResource OutlinedRedButton}"  HeightRequest="35"/>
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="End">
