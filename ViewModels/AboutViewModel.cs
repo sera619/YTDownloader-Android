@@ -6,8 +6,19 @@ namespace YTDownloaderMAUI.ViewModels
     {
         public ICommand OpenUrlInBrowserCommand { get; }
 
+        private string _versionText = string.Empty;
+        public string VersionText
+        {
+            get => _versionText;
+            set
+            {
+                _versionText = value;
+            }
+        }
+
         public AboutViewModel()
         {
+            VersionText = VersionTracking.CurrentVersion;
             OpenUrlInBrowserCommand = new Command<string>(async (urlstring) => await OpenUrlInBrowser(urlstring));
         }
 
