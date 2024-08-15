@@ -24,10 +24,50 @@
                     <Label Text="Whether you're creating a personal music library, preparing offline content for your commute, or gathering audio resources for your next project, YTDownloader provides an efficient, legal way to transform online content into portable audio files."
                            Style="{StaticResource BodyLabelStyle}" />
 
+                    <VerticalStackLayout Spacing="2">
+                        
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="App Name:" Margin="0" TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Margin="40,0,0,0" Text="YT Downloader (Android)" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+                    <BoxView HeightRequest="1" Margin="10,5,10,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="Version:" Margin="0" TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label  Margin="40,0,0,0" Text="{Binding VersionText}" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+                    <BoxView HeightRequest="1" Margin="10,5,10,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="License:" Margin="0" TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label  Margin="40,0,0,0" Text="MIT License" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Margin="10,5,10,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="Company:" Margin="0" TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label  Margin="40,0,0,0" Text="Creative Dudes Studios" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+                    <BoxView HeightRequest="1" Margin="10,5,10,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="Developer:" Margin="0"  TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label  Margin="40,0,0,0" Text="S3R43o3"  Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+                    <BoxView HeightRequest="1" Margin="10,5,10,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
+
+                    <VerticalStackLayout Padding="0" Margin="10,0" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="Email:" Margin="0"  TextColor="{StaticResource Primary}" Style="{StaticResource BodyLabelStyle}" />
+                        <Label  Margin="40,0,0,0" Text="seragame619@gmail.com" Style="{StaticResource BodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
                     <BoxView HeightRequest="1" Margin="0,5,0,5" BackgroundColor="#555" HorizontalOptions="FillAndExpand" />
 
                     <Label Text="Key Features" Style="{StaticResource SubHeaderLabelStyle}" />
-                    <VerticalStackLayout Margin="80,0,0,0" Spacing="5">
+                    <VerticalStackLayout Margin="40,0,0,0" Spacing="5">
                         <Label Text="• No ads" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• No unnescessary features" Style="{StaticResource BodyLabelStyle}" />
                         <Label Text="• No big data" Style="{StaticResource BodyLabelStyle}" />
@@ -57,13 +97,8 @@
                            Style="{StaticResource BodyLabelStyle}" />
                         <Button Text="YT Downloader on Github" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://github.com/sera619/YTDownloader-Android" HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Style="{StaticResource RedButton}" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Margin="0,10,0,0">
-                        <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,0.5*">
-                            <Label Text="Developed by:" Style="{StaticResource BodyLabelStyle}" />
-                            <Label Grid.Column="1"  HorizontalOptions="End" Text="S3R43o3" Style="{StaticResource BodyLabelStyle}" />
-                            <Label Grid.Row="1" Text="Email:" Style="{StaticResource BodyLabelStyle}" />
-                            <Label Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" Text="seragame619@gmail.com" Style="{StaticResource BodyLabelStyle}" />
-                        </Grid>
+
+                    <VerticalStackLayout Spacing="10">
                         <Label Margin="0,15,0,5" Text="Or you can reach out the social media with the following buttons." LineBreakMode="WordWrap" HorizontalTextAlignment="Start" Style="{StaticResource BodyLabelStyle}"/>
                         <FlexLayout Margin="0,10,0,5" AlignContent="Center" JustifyContent="SpaceAround">
                             <Button HeightRequest="35" FontAttributes="Bold" Padding="10,5,10,5" ImageSource="github_icon.svg" Command="{Binding OpenUrlInBrowserCommand}" CommandParameter="https://www.github.com/sera619" Style="{StaticResource OutlinedRedButton}" />
